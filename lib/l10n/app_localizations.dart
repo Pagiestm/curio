@@ -104,11 +104,119 @@ abstract class AppLocalizations {
   /// **'Hello World'**
   String get helloWorld;
 
-  /// Title for the Home Page
+  /// Home page title
   ///
   /// In en, this message translates to:
-  /// **'Home Page'**
+  /// **'Home'**
   String get homeTitle;
+
+  /// Label for the favorites section
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get favorites;
+
+  /// Settings page title
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// Settings page subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Personalization'**
+  String get settingsSubtitle;
+
+  /// Application title
+  ///
+  /// In en, this message translates to:
+  /// **'Curio News'**
+  String get appTitle;
+
+  /// Application subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Latest news'**
+  String get appSubtitle;
+
+  /// Application description
+  ///
+  /// In en, this message translates to:
+  /// **'Your modern news app to stay informed in real-time about world events.'**
+  String get appDescription;
+
+  /// Badge for featured article
+  ///
+  /// In en, this message translates to:
+  /// **'🔥 FEATURED'**
+  String get featuredBadge;
+
+  /// Section title for latest news
+  ///
+  /// In en, this message translates to:
+  /// **'Latest news'**
+  String get latestNews;
+
+  /// Subtitle for latest news section
+  ///
+  /// In en, this message translates to:
+  /// **'Stay informed in real time'**
+  String get latestNewsSubtitle;
+
+  /// See all button text
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get seeAll;
+
+  /// Read more link text
+  ///
+  /// In en, this message translates to:
+  /// **'Read more'**
+  String get readMore;
+
+  /// No articles title
+  ///
+  /// In en, this message translates to:
+  /// **'No articles'**
+  String get noArticles;
+
+  /// No articles message
+  ///
+  /// In en, this message translates to:
+  /// **'No articles are available at the moment'**
+  String get noArticlesMessage;
+
+  /// Error title
+  ///
+  /// In en, this message translates to:
+  /// **'Oops!'**
+  String get error;
+
+  /// Retry button text
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// Loading indicator text
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// Language section title
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// About section title
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
 }
 
 class _AppLocalizationsDelegate

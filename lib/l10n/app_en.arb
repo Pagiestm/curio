@@ -1,10 +1,103 @@
 {
+  "@@locale": "en",
+  
   "helloWorld": "Hello World",
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
   },
-  "homeTitle": "Home Page",
+  
+  "homeTitle": "Home",
   "@homeTitle": {
-    "description": "Title for the Home Page"
+    "description": "Home page title"
+  },
+  
+  "favorites": "Favorites",
+  "@favorites": {
+    "description": "Label for the favorites section"
+  },
+  
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings page title"
+  },
+  
+  "settingsSubtitle": "Personalization",
+  "@settingsSubtitle": {
+    "description": "Settings page subtitle"
+  },
+  
+  "appTitle": "Curio News",
+  "@appTitle": {
+    "description": "Application title"
+  },
+  
+  "appSubtitle": "Latest news",
+  "@appSubtitle": {
+    "description": "Application subtitle"
+  },
+  
+  "appDescription": "Your modern news app to stay informed in real-time about world events.",
+  "@appDescription": {
+    "description": "Application description"
+  },
+  
+  "featuredBadge": "🔥 FEATURED",
+  "@featuredBadge": {
+    "description": "Badge for featured article"
+  },
+  
+  "latestNews": "Latest news",
+  "@latestNews": {
+    "description": "Section title for latest news"
+  },
+  
+  "latestNewsSubtitle": "Stay informed in real time",
+  "@latestNewsSubtitle": {
+    "description": "Subtitle for latest news section"
+  },
+  
+  "seeAll": "See all",
+  "@seeAll": {
+    "description": "See all button text"
+  },
+  
+  "readMore": "Read more",
+  "@readMore": {
+    "description": "Read more link text"
+  },
+  
+  "noArticles": "No articles",
+  "@noArticles": {
+    "description": "No articles title"
+  },
+  
+  "noArticlesMessage": "No articles are available at the moment",
+  "@noArticlesMessage": {
+    "description": "No articles message"
+  },
+  
+  "error": "Oops!",
+  "@error": {
+    "description": "Error title"
+  },
+  
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button text"
+  },
+  
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Loading indicator text"
+  },
+  
+  "language": "Language",
+  "@language": {
+    "description": "Language section title"
+  },
+  
+  "about": "About",
+  "@about": {
+    "description": "About section title"
   }
 }

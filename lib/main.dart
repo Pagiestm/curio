@@ -3,7 +3,9 @@ import 'package:curio/data/repositories/article_repository_impl.dart';
 import 'package:curio/domain/repositories/article_repository.dart';
 import 'package:curio/domain/services/article_service.dart';
 import 'package:curio/presentation/viewmodels/article_viewmodel.dart';
+import 'package:curio/presentation/viewmodels/settings_viewmodel.dart';
 import 'package:curio/router.dart';
+import 'package:curio/config/theme/index.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'l10n/app_localizations.dart';
@@ -35,19 +37,25 @@ class MyApp extends StatelessWidget {
         ProxyProvider<ArticleRepository, ArticleService>(
           update: (_, repository, __) => ArticleService(repository),
         ),
-        // ViewModel
+        // ViewModels
         ChangeNotifierProvider(
           create: (c) => ArticleViewModel(c.read<ArticleService>()),
         ),
-      ],
-      child: MaterialApp.router(
-        title: 'Curio',
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        ChangeNotifierProvider(
+          create: (_) => SettingsViewModel(),
         ),
-        routerConfig: router,
+      ],
+      child: Consumer<SettingsViewModel>(
+        builder: (context, settingsViewModel, child) {
+          return MaterialApp.router(
+            title: 'Curio',
+            locale: settingsViewModel.locale,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            theme: AppTheme.lightTheme,
+            routerConfig: router,
+          );
+        },
       ),
     );
   }

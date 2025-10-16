@@ -40,7 +40,6 @@ class ArticleRepositoryImpl implements ArticleRepository {
     throw UnimplementedError();
   }
 
-  @override
   Future<List<Article>> getArticleHistory() {
     // TODO: implement getArticleHistory
     throw UnimplementedError();

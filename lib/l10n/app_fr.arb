@@ -1,4 +1,30 @@
 {
+  "@@locale": "fr",
+  
   "helloWorld": "Bonjour le monde",
-  "homeTitle": "Page d'accueil"
+  "homeTitle": "Accueil",
+  "favorites": "Favoris",
+  "settings": "Paramètres",
+  "settingsSubtitle": "Personnalisation",
+  
+  "appTitle": "Curio News",
+  "appSubtitle": "Les dernières actualités",
+  "appDescription": "Votre application de news moderne pour rester informé en temps réel sur les actualités du monde entier.",
+  
+  "featuredBadge": "🔥 À LA UNE",
+  "latestNews": "Dernières nouvelles",
+  "latestNewsSubtitle": "Restez informé en temps réel",
+  "seeAll": "Voir tout",
+  "readMore": "Lire plus",
+  
+  "noArticles": "Aucun article",
+  "noArticlesMessage": "Aucun article n'est disponible pour le moment",
+  
+  "error": "Oups !",
+  "retry": "Réessayer",
+  
+  "loading": "Chargement...",
+  
+  "language": "Langue",
+  "about": "À propos"
 }
