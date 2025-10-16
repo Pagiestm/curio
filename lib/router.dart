@@ -7,7 +7,7 @@ final GoRoute homeRoute = GoRoute(
   path: '/',
   name: 'home',
   builder: (context, __) =>
-      HomeScreen(title: AppLocalizations.of(context)!.homeTitle),
+      HomeScreen(),
 );
 
 final GoRoute favoritesRoute = GoRoute(
