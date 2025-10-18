@@ -13,13 +13,13 @@ class ArticleDetailsScreen extends StatelessWidget {
 
     if (vm.article == null) {
       return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: const EmptyView(),
       );
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: CustomScrollView(
         slivers: [
           ArticleDetailsHeader(article: vm.article!),

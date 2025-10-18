@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:curio/config/theme/index.dart';
 import '../../../l10n/app_localizations.dart';
 
 class HomeHeader extends StatelessWidget {
@@ -12,10 +11,10 @@ class HomeHeader extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Theme.of(context).shadowColor.withOpacity(0.05),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -42,8 +41,8 @@ class HomeHeader extends StatelessWidget {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              AppColors.primary,
-                              AppColors.primaryLight,
+                              Theme.of(context).colorScheme.primary,
+                              Theme.of(context).colorScheme.primaryContainer,
                             ],
                           ),
                           borderRadius: BorderRadius.circular(2),
@@ -55,7 +54,7 @@ class HomeHeader extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.w900,
-                          color: AppColors.textPrimary,
+                          color: Theme.of(context).colorScheme.onSurface,
                           letterSpacing: -1.5,
                           height: 1,
                         ),
@@ -70,7 +69,7 @@ class HomeHeader extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.textSecondary,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                         letterSpacing: 1.5,
                       ),
                     ),
@@ -87,7 +86,7 @@ class HomeHeader extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.primary,
+                    color: Theme.of(context).colorScheme.primary,
                     letterSpacing: 0.5,
                   ),
                 ),
@@ -97,7 +96,7 @@ class HomeHeader extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
-                    color: AppColors.textPrimary,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
               ],

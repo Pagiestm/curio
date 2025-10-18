@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:curio/config/theme/index.dart';
 import '../../../l10n/app_localizations.dart';
 
 class SettingsHeader extends StatelessWidget {
@@ -12,10 +11,10 @@ class SettingsHeader extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(24, 24, 24, 20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         border: Border(
           bottom: BorderSide(
-            color: AppColors.border,
+            color: Theme.of(context).dividerTheme.color ?? Theme.of(context).colorScheme.outline,
             width: 1,
           ),
         ),
@@ -30,12 +29,12 @@ class SettingsHeader extends StatelessWidget {
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.1),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
                 Icons.settings_outlined,
-                color: AppColors.primary,
+                color: Theme.of(context).colorScheme.primary,
                 size: 24,
               ),
             ),
@@ -50,7 +49,7 @@ class SettingsHeader extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.w700,
-                      color: AppColors.textPrimary,
+                      color: Theme.of(context).colorScheme.onSurface,
                       letterSpacing: -0.5,
                       height: 1,
                     ),
@@ -61,7 +60,7 @@ class SettingsHeader extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
-                      color: AppColors.textSecondary,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                       letterSpacing: 0.2,
                     ),
                   ),

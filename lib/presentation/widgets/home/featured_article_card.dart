@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:curio/config/theme/index.dart';
 import 'package:go_router/go_router.dart';
 import '../../../domain/entities/article.dart';
 
@@ -22,13 +21,15 @@ class FeaturedArticleCard extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.08),
-              blurRadius: 20,
-              offset: const Offset(0, 8),
-            ),
-          ],
+          boxShadow: Theme.of(context).brightness == Brightness.light
+              ? [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.08),
+                    blurRadius: 20,
+                    offset: const Offset(0, 8),
+                  ),
+                ]
+              : null, // Pas d'ombre en mode sombre
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(24),
@@ -46,7 +47,7 @@ class FeaturedArticleCard extends StatelessWidget {
                         loadingBuilder: (context, child, loadingProgress) {
                           if (loadingProgress == null) return child;
                           return Container(
-                            color: AppColors.grey200,
+                            color: Theme.of(context).colorScheme.surfaceContainerHighest,
                             child: const Center(
                               child: SizedBox(
                                 width: 36,
@@ -57,23 +58,23 @@ class FeaturedArticleCard extends StatelessWidget {
                           );
                         },
                         errorBuilder: (context, error, stackTrace) => Container(
-                          color: AppColors.grey200,
+                          color: Theme.of(context).colorScheme.surfaceContainerHighest,
                           child: Center(
                             child: Icon(
                               Icons.broken_image,
                               size: 64,
-                              color: AppColors.grey400,
+                              color: Theme.of(context).colorScheme.onSurfaceVariant,
                             ),
                           ),
                         ),
                       )
                     : Container(
-                        color: AppColors.grey200,
+                        color: Theme.of(context).colorScheme.surfaceContainerHighest,
                         child: Center(
                           child: Icon(
                             Icons.article_outlined,
                             size: 64,
-                            color: AppColors.grey400,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
                           ),
                         ),
                       ),
@@ -87,8 +88,8 @@ class FeaturedArticleCard extends StatelessWidget {
                     end: Alignment.bottomCenter,
                     colors: [
                       Colors.transparent,
-                      Colors.black.withOpacity(0.1),
-                      Colors.black.withOpacity(0.7),
+                      Theme.of(context).shadowColor.withOpacity(0.1),
+                      Theme.of(context).shadowColor.withOpacity(0.7),
                     ],
                     stops: const [0.3, 0.6, 1.0],
                   ),
@@ -114,15 +115,17 @@ class FeaturedArticleCard extends StatelessWidget {
                             vertical: 7,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.primary,
+                            color: Theme.of(context).colorScheme.primary,
                             borderRadius: BorderRadius.circular(8),
-                            boxShadow: [
-                              BoxShadow(
-                                color: AppColors.primary.withOpacity(0.4),
-                                blurRadius: 8,
-                                offset: const Offset(0, 2),
-                              ),
-                            ],
+                            boxShadow: Theme.of(context).brightness == Brightness.light
+                                ? [
+                                    BoxShadow(
+                                      color: Theme.of(context).colorScheme.primary.withOpacity(0.4),
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 2),
+                                    ),
+                                  ]
+                                : null, // Pas d'ombre en mode sombre
                           ),
                           child: Text(
                             article.category.toUpperCase(),

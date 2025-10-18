@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:curio/config/theme/index.dart';
 
 class LanguageSelectionCard extends StatelessWidget {
   final String selectedLanguageCode;
@@ -15,15 +14,15 @@ class LanguageSelectionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardTheme.color,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: AppColors.border,
+          color: Theme.of(context).dividerTheme.color ?? Theme.of(context).colorScheme.outline,
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.03),
+            color: Theme.of(context).shadowColor.withOpacity(0.03),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -38,7 +37,7 @@ class LanguageSelectionCard extends StatelessWidget {
             locale: const Locale('fr'),
             flag: '🇫🇷',
           ),
-          Divider(height: 1, color: AppColors.border),
+          Divider(height: 1, color: Theme.of(context).dividerTheme.color),
           _buildLanguageTile(
             context,
             title: 'English',
@@ -72,8 +71,8 @@ class LanguageSelectionCard extends StatelessWidget {
               height: 48,
               decoration: BoxDecoration(
                 color: isSelected
-                    ? AppColors.primary.withOpacity(0.1)
-                    : AppColors.grey100,
+                    ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
+                    : Theme.of(context).colorScheme.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
@@ -94,7 +93,7 @@ class LanguageSelectionCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                      color: isSelected ? AppColors.primary : AppColors.textPrimary,
+                      color: isSelected ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                   const SizedBox(height: 2),
@@ -102,7 +101,7 @@ class LanguageSelectionCard extends StatelessWidget {
                     subtitle,
                     style: TextStyle(
                       fontSize: 13,
-                      color: AppColors.textSecondary,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],
@@ -114,9 +113,9 @@ class LanguageSelectionCard extends StatelessWidget {
               height: 24,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: isSelected ? AppColors.primary : Colors.transparent,
+                color: isSelected ? Theme.of(context).colorScheme.primary : Colors.transparent,
                 border: Border.all(
-                  color: isSelected ? AppColors.primary : AppColors.border,
+                  color: isSelected ? Theme.of(context).colorScheme.primary : Theme.of(context).dividerTheme.color ?? Theme.of(context).colorScheme.outline,
                   width: 2,
                 ),
               ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:curio/config/theme/index.dart';
 import 'package:curio/l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import '../../../domain/entities/article.dart';
@@ -23,15 +22,15 @@ class CompactArticleCard extends StatelessWidget {
         height: 120,
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).cardTheme.color,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: AppColors.border,
+            color: Theme.of(context).dividerTheme.color ?? Theme.of(context).colorScheme.outline,
             width: 1,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.03),
+              color: Theme.of(context).shadowColor.withOpacity(0.03),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -57,7 +56,7 @@ class CompactArticleCard extends StatelessWidget {
                           loadingBuilder: (context, child, loadingProgress) {
                             if (loadingProgress == null) return child;
                             return Container(
-                              color: AppColors.grey100,
+                              color: Theme.of(context).colorScheme.surfaceContainerHighest,
                               child: const Center(
                                 child: SizedBox(
                                   width: 20,
@@ -69,11 +68,11 @@ class CompactArticleCard extends StatelessWidget {
                           },
                           errorBuilder: (context, error, stackTrace) {
                             return Container(
-                              color: AppColors.grey100,
+                              color: Theme.of(context).colorScheme.surfaceContainerHighest,
                               child: Center(
                                 child: Icon(
                                   Icons.broken_image,
-                                  color: AppColors.grey400,
+                                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                                   size: 36,
                                 ),
                               ),
@@ -81,11 +80,11 @@ class CompactArticleCard extends StatelessWidget {
                           },
                         )
                       : Container(
-                          color: AppColors.grey100,
+                          color: Theme.of(context).colorScheme.surfaceContainerHighest,
                           child: Center(
                             child: Icon(
                               Icons.article_outlined,
-                              color: AppColors.grey400,
+                              color: Theme.of(context).colorScheme.onSurfaceVariant,
                               size: 36,
                             ),
                           ),
@@ -110,13 +109,13 @@ class CompactArticleCard extends StatelessWidget {
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: AppColors.primary.withOpacity(0.1),
+                          color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: Text(
                           article.category.toUpperCase(),
                           style: TextStyle(
-                            color: AppColors.primary,
+                            color: Theme.of(context).colorScheme.primary,
                             fontSize: 9,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 0.8,
@@ -132,7 +131,7 @@ class CompactArticleCard extends StatelessWidget {
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         height: 1.3,
-                        color: AppColors.textPrimary,
+                        color: Theme.of(context).colorScheme.onSurface,
                         letterSpacing: -0.2,
                       ),
                       maxLines: 2,
@@ -146,7 +145,7 @@ class CompactArticleCard extends StatelessWidget {
                         Text(
                           l10n.readMore,
                           style: TextStyle(
-                            color: AppColors.primary,
+                            color: Theme.of(context).colorScheme.primary,
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                           ),
@@ -155,7 +154,7 @@ class CompactArticleCard extends StatelessWidget {
                         Icon(
                           Icons.arrow_forward,
                           size: 12,
-                          color: AppColors.primary,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ],
                     ),

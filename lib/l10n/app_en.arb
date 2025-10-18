@@ -104,5 +104,20 @@
   "summary": "Summary",
   "@summary": {
     "description": "Summary section title"
+  },
+  
+  "theme": "Theme",
+  "@theme": {
+    "description": "Theme section title"
+  },
+  
+  "lightTheme": "Light",
+  "@lightTheme": {
+    "description": "Light theme option"
+  },
+  
+  "darkTheme": "Dark",
+  "@darkTheme": {
+    "description": "Dark theme option"
   }
 }

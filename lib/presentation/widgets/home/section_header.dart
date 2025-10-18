@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:curio/l10n/app_localizations.dart';
-import 'package:curio/config/theme/index.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title;
@@ -32,7 +31,7 @@ class SectionHeader extends StatelessWidget {
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                     letterSpacing: -0.5,
-                    color: AppColors.textPrimary,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
                 if (subtitle != null) ...[
@@ -41,7 +40,7 @@ class SectionHeader extends StatelessWidget {
                     subtitle!,
                     style: TextStyle(
                       fontSize: 13,
-                      color: AppColors.textSecondary,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],
@@ -57,7 +56,7 @@ class SectionHeader extends StatelessWidget {
                   Text(
                     l10n.seeAll,
                     style: TextStyle(
-                      color: AppColors.primary,
+                      color: Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.w600,
                       fontSize: 14,
                     ),
@@ -66,7 +65,7 @@ class SectionHeader extends StatelessWidget {
                   Icon(
                     Icons.arrow_forward,
                     size: 16,
-                    color: AppColors.primary,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ],
               ),

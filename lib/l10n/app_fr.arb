@@ -27,5 +27,8 @@
   
   "language": "Langue",
   "about": "À propos",
-  "summary": "Résumé"
+  "summary": "Résumé",
+  "theme": "Thème",
+  "lightTheme": "Clair",
+  "darkTheme": "Sombre"
 }
