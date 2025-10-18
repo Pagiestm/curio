@@ -1,8 +1,12 @@
 import 'package:curio/l10n/app_localizations.dart';
 import 'package:curio/presentation/screens/home_screen.dart';
 import 'package:curio/presentation/screens/settings_screen.dart';
+import 'package:curio/presentation/screens/article_details_screen.dart';
+import 'package:curio/domain/entities/article.dart';
+import 'package:curio/presentation/viewmodels/article_details_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 final GoRoute homeRoute = GoRoute(
   path: '/',
@@ -28,6 +32,26 @@ final GoRoute settingsRoute = GoRoute(
   builder: (context, __) => const SettingsScreen(),
 );
 
+final GoRoute articleDetailsRoute = GoRoute(
+  path: '/article',
+  name: 'article_details',
+  builder: (context, state) {
+    if (state.extra == null || state.extra is! Article) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        context.go('/');
+      });
+      return const SizedBox.shrink();
+    }
+    final article = state.extra as Article;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<ArticleDetailsViewModel>().setArticle(article);
+    });
+
+    return const ArticleDetailsScreen();
+  },
+);
+
 final GoRouter router = GoRouter(
   debugLogDiagnostics: true,
   routes: [
@@ -41,7 +65,7 @@ final GoRouter router = GoRouter(
               '/': 0,
               '/favorites': 1,
               '/settings': 2,
-            }[state.fullPath]!,
+            }[state.fullPath] ?? 0, // Default to home if not found
             onTap: (index) {
               if (index == 0) {
                 context.go('/');
@@ -70,7 +94,7 @@ final GoRouter router = GoRouter(
           ),
         );
       },
-      routes: [homeRoute, favoritesRoute, settingsRoute],
+      routes: [homeRoute, favoritesRoute, settingsRoute, articleDetailsRoute],
     ),
   ],
 );

@@ -4,6 +4,7 @@ import 'package:curio/domain/repositories/article_repository.dart';
 import 'package:curio/domain/services/article_service.dart';
 import 'package:curio/presentation/viewmodels/article_viewmodel.dart';
 import 'package:curio/presentation/viewmodels/settings_viewmodel.dart';
+import 'package:curio/presentation/viewmodels/article_details_viewmodel.dart';
 import 'package:curio/router.dart';
 import 'package:curio/config/theme/index.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => SettingsViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ArticleDetailsViewModel(),
         ),
       ],
       child: Consumer<SettingsViewModel>(

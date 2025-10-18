@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:curio/config/theme/index.dart';
+import 'package:go_router/go_router.dart';
 import '../../../domain/entities/article.dart';
 
 class FeaturedArticleCard extends StatelessWidget {
@@ -15,7 +16,7 @@ class FeaturedArticleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap ?? () => context.go('/article', extra: article),
       child: Container(
         height: 400,
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),

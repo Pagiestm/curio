@@ -69,4 +69,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get about => 'À propos';
+
+  @override
+  String get summary => 'Résumé';
 }

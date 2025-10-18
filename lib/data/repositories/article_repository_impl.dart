@@ -21,6 +21,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
         category: model.category,
         content: model.content,
         urlImage: model.urlImage,
+        author: model.author,
+        publishedAt: model.publishedAt,
       )).toList();
     } catch (e) {
       // Handle errors appropriately
