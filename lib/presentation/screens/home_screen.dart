@@ -42,9 +42,6 @@ class HomeScreen extends StatelessWidget {
                                   const SizedBox(height: 16),
                                   FeaturedArticleCard(
                                     article: vm.articles.first,
-                                    onTap: () {
-                                      // TODO: Navigate to detail
-                                    },
                                   ),
                                 ],
                               ),
@@ -69,9 +66,6 @@ class HomeScreen extends StatelessWidget {
                                     final article = vm.articles[index + 1];
                                     return CompactArticleCard(
                                       article: article,
-                                      onTap: () {
-                                        // TODO: Navigate to detail
-                                      },
                                     );
                                   },
                                   childCount: vm.articles.length - 1,

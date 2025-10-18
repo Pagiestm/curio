@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../viewmodels/settings_viewmodel.dart';
 import '../../l10n/app_localizations.dart';
-import '../widgets/settings/settings_header.dart';
-import '../widgets/settings/settings_section_header.dart';
-import '../widgets/settings/language_selection_card.dart';
+import '../widgets/settings/index.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});

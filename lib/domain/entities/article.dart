@@ -5,6 +5,8 @@ class Article {
   final String category;
   final String content;
   final String urlImage;
+  final String author;
+  final DateTime publishedAt;
 
   Article({
     required this.id,
@@ -13,6 +15,8 @@ class Article {
     required this.category,
     required this.content,
     required this.urlImage,
+    required this.author,
+    required this.publishedAt,
   });
 
   // Convert from JSON to Article
@@ -24,6 +28,10 @@ class Article {
       category: json['category']?.toString() ?? '',
       content: json['content']?.toString() ?? '',
       urlImage: json['urlImage']?.toString() ?? '',
+      author: json['author']?.toString() ?? 'Auteur inconnu',
+      publishedAt: json['publishedAt'] != null
+          ? DateTime.tryParse(json['publishedAt'].toString()) ?? DateTime.now()
+          : DateTime.now(),
     );
   }
 
@@ -36,6 +44,8 @@ class Article {
       'category': category,
       'content': content,
       'urlImage': urlImage,
+      'author': author,
+      'publishedAt': publishedAt.toIso8601String(),
     };
   }
 }

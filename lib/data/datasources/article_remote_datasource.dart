@@ -31,6 +31,8 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
           'category': raw['source']['name'],
           'content': raw['content'],
           'urlImage': raw['urlToImage'],
+          'author': raw['author'],
+          'publishedAt': raw['publishedAt'],
         };
         return Article.fromJson(json);
       }).toList();

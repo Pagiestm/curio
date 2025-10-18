@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curio/config/theme/index.dart';
 import 'package:curio/l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 import '../../../domain/entities/article.dart';
 
 class CompactArticleCard extends StatelessWidget {
@@ -17,7 +18,7 @@ class CompactArticleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap ?? () => context.go('/article', extra: article),
       child: Container(
         height: 120,
         margin: const EdgeInsets.only(bottom: 16),

@@ -99,5 +99,10 @@
   "about": "About",
   "@about": {
     "description": "About section title"
+  },
+  
+  "summary": "Summary",
+  "@summary": {
+    "description": "Summary section title"
   }
 }
