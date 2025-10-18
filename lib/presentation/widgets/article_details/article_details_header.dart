@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:curio/config/theme/index.dart';
 import '../../../domain/entities/article.dart';
 
 class ArticleDetailsHeader extends StatelessWidget {
@@ -17,16 +16,17 @@ class ArticleDetailsHeader extends StatelessWidget {
       expandedHeight: 350,
       pinned: true,
       stretch: true,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      surfaceTintColor: Theme.of(context).scaffoldBackgroundColor,
       elevation: 0,
       leading: Container(
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).cardTheme.color,
           shape: BoxShape.circle,
-          boxShadow: [
+          boxShadow: Theme.of(context).brightness == Brightness.dark ? null : [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Theme.of(context).shadowColor.withOpacity(0.1),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -35,7 +35,7 @@ class ArticleDetailsHeader extends StatelessWidget {
         child: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: AppColors.textPrimary,
+            color: Theme.of(context).colorScheme.onSurface,
             size: 24,
           ),
           onPressed: () => context.go('/'),
@@ -45,11 +45,11 @@ class ArticleDetailsHeader extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(right: 8, top: 8, bottom: 8),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).cardTheme.color,
             shape: BoxShape.circle,
-            boxShadow: [
+            boxShadow: Theme.of(context).brightness == Brightness.dark ? null : [
               BoxShadow(
-                color: Colors.black.withOpacity(0.1),
+                color: Theme.of(context).shadowColor.withOpacity(0.1),
                 blurRadius: 8,
                 offset: const Offset(0, 2),
               ),
@@ -58,7 +58,7 @@ class ArticleDetailsHeader extends StatelessWidget {
           child: IconButton(
             icon: Icon(
               Icons.bookmark_border,
-              color: AppColors.textPrimary,
+              color: Theme.of(context).colorScheme.onSurface,
               size: 24,
             ),
             onPressed: () {
@@ -83,10 +83,10 @@ class ArticleDetailsHeader extends StatelessWidget {
                     loadingBuilder: (context, child, loadingProgress) {
                       if (loadingProgress == null) return child;
                       return Container(
-                        color: AppColors.grey100,
+                        color: Theme.of(context).colorScheme.surfaceContainerHighest,
                         child: Center(
                           child: CircularProgressIndicator(
-                            color: AppColors.primary,
+                            color: Theme.of(context).colorScheme.primary,
                             strokeWidth: 3,
                           ),
                         ),
@@ -99,15 +99,15 @@ class ArticleDetailsHeader extends StatelessWidget {
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: [
-                              AppColors.grey100,
-                              AppColors.grey200,
+                              Theme.of(context).colorScheme.surfaceContainerHighest,
+                              Theme.of(context).colorScheme.surfaceContainerHighest.withOpacity(0.8),
                             ],
                           ),
                         ),
                         child: Center(
                           child: Icon(
                             Icons.article_outlined,
-                            color: AppColors.grey400,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
                             size: 80,
                           ),
                         ),
@@ -120,15 +120,15 @@ class ArticleDetailsHeader extends StatelessWidget {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          AppColors.primary.withOpacity(0.1),
-                          AppColors.primaryLight.withOpacity(0.1),
+                          Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                          Theme.of(context).colorScheme.primaryContainer.withOpacity(0.1),
                         ],
                       ),
                     ),
                     child: Center(
                       child: Icon(
                         Icons.article_outlined,
-                        color: AppColors.grey400,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                         size: 80,
                       ),
                     ),

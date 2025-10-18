@@ -72,4 +72,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get summary => 'Résumé';
+
+  @override
+  String get theme => 'Thème';
+
+  @override
+  String get lightTheme => 'Clair';
+
+  @override
+  String get darkTheme => 'Sombre';
 }

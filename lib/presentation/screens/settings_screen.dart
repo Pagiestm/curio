@@ -13,7 +13,7 @@ class SettingsScreen extends StatelessWidget {
     final settingsVM = context.watch<SettingsViewModel>();
 
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -29,6 +29,15 @@ class SettingsScreen extends StatelessWidget {
                 LanguageSelectionCard(
                   selectedLanguageCode: settingsVM.locale.languageCode,
                   onLanguageChanged: settingsVM.changeLocale,
+                ),
+                const SizedBox(height: 32),
+
+                // Section Thème
+                SettingsSectionHeader(title: l10n.theme),
+                const SizedBox(height: 12),
+                ThemeSelectionCard(
+                  selectedThemeMode: settingsVM.themeMode,
+                  onThemeModeChanged: settingsVM.changeThemeMode,
                 ),
                 const SizedBox(height: 32),
               ]),

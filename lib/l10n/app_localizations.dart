@@ -223,6 +223,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Summary'**
   String get summary;
+
+  /// Theme section title
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
+
+  /// Light theme option
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get lightTheme;
+
+  /// Dark theme option
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get darkTheme;
 }
 
 class _AppLocalizationsDelegate

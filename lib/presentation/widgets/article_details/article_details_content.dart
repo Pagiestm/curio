@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:curio/config/theme/index.dart';
 import 'package:curio/l10n/app_localizations.dart';
 import '../../../domain/entities/article.dart';
 
@@ -15,7 +14,7 @@ class ArticleDetailsContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Container(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -26,7 +25,7 @@ class ArticleDetailsContent extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border(
                     left: BorderSide(
-                      color: AppColors.primary,
+                      color: Theme.of(context).colorScheme.primary,
                       width: 4,
                     ),
                   ),
@@ -37,14 +36,14 @@ class ArticleDetailsContent extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w900,
-                    color: AppColors.textPrimary,
+                    color: Theme.of(context).colorScheme.onSurface,
                     letterSpacing: -1.2,
                     height: 1.1,
                     shadows: [
                       Shadow(
                         offset: const Offset(0, 1),
                         blurRadius: 2,
-                        color: Colors.black.withOpacity(0.1),
+                        color: Theme.of(context).shadowColor.withOpacity(0.1),
                       ),
                     ],
                   ),
@@ -67,16 +66,19 @@ class ArticleDetailsContent extends StatelessWidget {
                         vertical: 8,
                       ),
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
+                        color: Theme.of(context).brightness == Brightness.dark 
+                          ? Theme.of(context).colorScheme.primary
+                          : null,
+                        gradient: Theme.of(context).brightness == Brightness.dark ? null : LinearGradient(
                           colors: [
-                            AppColors.primary,
-                            AppColors.primaryLight,
+                            Theme.of(context).colorScheme.primary,
+                            Theme.of(context).colorScheme.primaryContainer,
                           ],
                         ),
                         borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
+                        boxShadow: Theme.of(context).brightness == Brightness.dark ? null : [
                           BoxShadow(
-                            color: AppColors.primary.withOpacity(0.3),
+                            color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                             blurRadius: 8,
                             offset: const Offset(0, 2),
                           ),
@@ -100,7 +102,7 @@ class ArticleDetailsContent extends StatelessWidget {
                       vertical: 8,
                     ),
                     decoration: BoxDecoration(
-                      color: AppColors.grey100,
+                      color: Theme.of(context).colorScheme.surfaceContainerHighest,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
@@ -109,14 +111,14 @@ class ArticleDetailsContent extends StatelessWidget {
                         Icon(
                           Icons.access_time,
                           size: 16,
-                          color: AppColors.textSecondary,
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                         const SizedBox(width: 6),
                         Text(
                           _formatDate(article.publishedAt),
                           style: TextStyle(
                             fontSize: 13,
-                            color: AppColors.textSecondary,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -139,17 +141,20 @@ class ArticleDetailsContent extends StatelessWidget {
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
+                        color: Theme.of(context).brightness == Brightness.dark 
+                          ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
+                          : null,
+                        gradient: Theme.of(context).brightness == Brightness.dark ? null : LinearGradient(
                           colors: [
-                            AppColors.primary.withOpacity(0.2),
-                            AppColors.primaryLight.withOpacity(0.2),
+                            Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                            Theme.of(context).colorScheme.primaryContainer.withOpacity(0.2),
                           ],
                         ),
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
                         Icons.person,
-                        color: AppColors.primary,
+                        color: Theme.of(context).colorScheme.primary,
                         size: 28,
                       ),
                     ),
@@ -160,7 +165,7 @@ class ArticleDetailsContent extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
-                          color: AppColors.textPrimary,
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -181,7 +186,7 @@ class ArticleDetailsContent extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       Colors.transparent,
-                      AppColors.grey200,
+                      Theme.of(context).colorScheme.outline.withOpacity(0.3),
                       Colors.transparent,
                     ],
                   ),
@@ -200,7 +205,7 @@ class ArticleDetailsContent extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
-                    color: AppColors.textPrimary,
+                    color: Theme.of(context).colorScheme.onSurface,
                     letterSpacing: -0.5,
                   ),
                 ),
@@ -216,11 +221,11 @@ class ArticleDetailsContent extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).cardTheme.color,
                     borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
+                    boxShadow: Theme.of(context).brightness == Brightness.dark ? null : [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.08),
+                        color: Theme.of(context).shadowColor.withOpacity(0.08),
                         blurRadius: 12,
                         offset: const Offset(0, 4),
                       ),
@@ -231,7 +236,7 @@ class ArticleDetailsContent extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
-                      color: AppColors.textPrimary,
+                      color: Theme.of(context).colorScheme.onSurface,
                       height: 1.6,
                       letterSpacing: -0.1,
                     ),
@@ -253,7 +258,7 @@ class ArticleDetailsContent extends StatelessWidget {
                       _cleanContent(article.content),
                       style: TextStyle(
                         fontSize: 17,
-                        color: AppColors.textPrimary,
+                        color: Theme.of(context).colorScheme.onSurface,
                         height: 1.8,
                         fontWeight: FontWeight.w400,
                         letterSpacing: -0.1,
@@ -267,10 +272,10 @@ class ArticleDetailsContent extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: AppColors.grey50,
+                            color: Theme.of(context).colorScheme.surfaceContainerHighest.withOpacity(0.5),
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: AppColors.grey200,
+                              color: Theme.of(context).dividerTheme.color ?? Theme.of(context).colorScheme.outline.withOpacity(0.3),
                               width: 1,
                             ),
                           ),
@@ -278,7 +283,7 @@ class ArticleDetailsContent extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.info_outline,
-                                color: AppColors.textSecondary,
+                                color: Theme.of(context).colorScheme.onSurfaceVariant,
                                 size: 20,
                               ),
                               const SizedBox(width: 12),
@@ -287,7 +292,7 @@ class ArticleDetailsContent extends StatelessWidget {
                                   "Le contenu complet n'est pas disponible via l'API",
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: AppColors.textSecondary,
+                                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -313,7 +318,7 @@ class ArticleDetailsContent extends StatelessWidget {
                       gradient: LinearGradient(
                         colors: [
                           Colors.transparent,
-                          AppColors.grey200,
+                          Theme.of(context).colorScheme.outline.withOpacity(0.3),
                           Colors.transparent,
                         ],
                       ),
@@ -327,7 +332,7 @@ class ArticleDetailsContent extends StatelessWidget {
                         width: 4,
                         height: 4,
                         decoration: BoxDecoration(
-                          color: AppColors.primary,
+                          color: Theme.of(context).colorScheme.primary,
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -336,7 +341,7 @@ class ArticleDetailsContent extends StatelessWidget {
                         width: 4,
                         height: 4,
                         decoration: BoxDecoration(
-                          color: AppColors.primary,
+                          color: Theme.of(context).colorScheme.primary,
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -345,7 +350,7 @@ class ArticleDetailsContent extends StatelessWidget {
                         width: 4,
                         height: 4,
                         decoration: BoxDecoration(
-                          color: AppColors.primary,
+                          color: Theme.of(context).colorScheme.primary,
                           shape: BoxShape.circle,
                         ),
                       ),

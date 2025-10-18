@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:curio/config/theme/index.dart';
 
 class SettingsSectionHeader extends StatelessWidget {
   final String title;
@@ -20,7 +19,7 @@ class SettingsSectionHeader extends StatelessWidget {
         style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w700,
-          color: AppColors.textPrimary,
+          color: Theme.of(context).colorScheme.onSurface,
           letterSpacing: 0.5,
         ),
       ),
