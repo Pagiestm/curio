@@ -27,7 +27,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appTitle => 'Curio News';
 
   @override
-  String get appSubtitle => 'Latest news';
+  String get homeSubtitle => 'Latest news';
+
+  @override
+  String get searchSubtitle => 'Search for news articles';
 
   @override
   String get appDescription =>
@@ -80,4 +83,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get darkTheme => 'Dark';
+
+  @override
+  String get search => 'Search';
+
+  @override
+  String get searchHint => 'Search articles...';
+
+  @override
+  String get noResultsFound => 'No articles found';
+
+  @override
+  String get noResultsFoundDescription =>
+      'We couldn\'t find any articles matching your search. Try different keywords!';
 }

@@ -3,6 +3,7 @@ import 'package:curio/data/repositories/article_repository_impl.dart';
 import 'package:curio/domain/repositories/article_repository.dart';
 import 'package:curio/domain/services/article_service.dart';
 import 'package:curio/presentation/viewmodels/article_viewmodel.dart';
+import 'package:curio/presentation/viewmodels/search_viewmodel.dart';
 import 'package:curio/presentation/viewmodels/settings_viewmodel.dart';
 import 'package:curio/presentation/viewmodels/article_details_viewmodel.dart';
 import 'package:curio/router.dart';
@@ -42,8 +43,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (c) => ArticleViewModel(c.read<ArticleService>()),
         ),
+        ChangeNotifierProvider(create: (_) => SettingsViewModel()),
         ChangeNotifierProvider(
-          create: (_) => SettingsViewModel(),
+          create: (c) => SearchViewmodel(c.read<ArticleService>()),
         ),
         ChangeNotifierProvider(
           create: (_) => ArticleDetailsViewModel(),

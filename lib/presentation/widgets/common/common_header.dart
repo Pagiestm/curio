@@ -1,12 +1,26 @@
+import 'package:curio/config/theme/index.dart';
 import 'package:flutter/material.dart';
 import '../../../l10n/app_localizations.dart';
 
-class HomeHeader extends StatelessWidget {
-  const HomeHeader({super.key});
+class CommonHeader extends StatelessWidget {
+  const CommonHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+
+    // subtitle by route localizationString? subtitle;
+    String? subtitle;
+    final routeName = ModalRoute.of(context)?.settings.name;
+    switch (routeName) {
+      case 'home':
+        subtitle = l10n.homeSubtitle;
+        break;
+      case 'search':
+        subtitle = l10n.searchSubtitle;
+        break;
+      // Add more cases for other routes as needed
+    }
 
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
@@ -40,10 +54,7 @@ class HomeHeader extends StatelessWidget {
                           gradient: LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
-                            colors: [
-                              Theme.of(context).colorScheme.primary,
-                              Theme.of(context).colorScheme.primaryContainer,
-                            ],
+                            colors: [AppColors.primary, AppColors.primaryLight],
                           ),
                           borderRadius: BorderRadius.circular(2),
                         ),
@@ -65,7 +76,7 @@ class HomeHeader extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 16),
                     child: Text(
-                      l10n.appSubtitle.toUpperCase(),
+                      subtitle?.toUpperCase() ?? '',
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
