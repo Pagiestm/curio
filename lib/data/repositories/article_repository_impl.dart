@@ -10,28 +10,49 @@ class ArticleRepositoryImpl implements ArticleRepository {
   @override
   Future<List<Article>> getArticles() async {
     try {
-      // Fetch articles from the remote source
-      final articles = await remoteArticleDataSource.fetchArticles();
+      final articlesRaw = await remoteArticleDataSource.fetchArticles();
 
-      // Convert ArticleModels to Entities
-      return articles.map((model) => Article(
-        id: model.id,
-        title: model.title,
-        description: model.description,
-        category: model.category,
-        content: model.content,
-        urlImage: model.urlImage,
-        author: model.author,
-        publishedAt: model.publishedAt,
-      )).toList();
+      return articlesRaw.map((raw) {
+        final json = {
+          'id': raw['url'],
+          'title': raw['title'],
+          'description': raw['description'],
+          'category': raw['source']['name'],
+          'content': raw['content'],
+          'urlImage': raw['urlToImage'],
+        };
+        return Article.fromJson(json);
+      }).toList();
     } catch (e) {
-      // Handle errors appropriately
       throw Exception('Failed to fetch articles: $e');
     }
   }
 
   @override
-  Future<void> clearHistory() {
+  Future<List<Article>> getArticlesByKeyword(String keyword) async {
+    try {
+      final articlesRaw = await remoteArticleDataSource.fetchArticlesByKeyword(
+        keyword,
+      );
+
+      return articlesRaw.map((raw) {
+        final json = {
+          'id': raw['url'],
+          'title': raw['title'],
+          'description': raw['description'],
+          'category': raw['source']['name'],
+          'content': raw['content'],
+          'urlImage': raw['urlToImage'],
+        };
+        return Article.fromJson(json);
+      }).toList();
+    } catch (e) {
+      throw Exception('Failed to fetch articles by keyword: $e');
+    }
+  }
+
+  @override
+  Future<void> clearArticles() {
     // TODO: implement clearHistory
     throw UnimplementedError();
   }

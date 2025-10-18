@@ -1,34 +1,32 @@
 {
   "@@locale": "fr",
-  
   "helloWorld": "Bonjour le monde",
   "homeTitle": "Accueil",
   "favorites": "Favoris",
   "settings": "Paramètres",
   "settingsSubtitle": "Personnalisation",
-  
   "appTitle": "Curio News",
-  "appSubtitle": "Les dernières actualités",
+  "homeSubtitle": "Les dernières actualités",
+  "searchSubtitle": "Rechercher des articles de presse",
   "appDescription": "Votre application de news moderne pour rester informé en temps réel sur les actualités du monde entier.",
-  
   "featuredBadge": "🔥 À LA UNE",
   "latestNews": "Dernières nouvelles",
   "latestNewsSubtitle": "Restez informé en temps réel",
   "seeAll": "Voir tout",
   "readMore": "Lire plus",
-  
   "noArticles": "Aucun article",
   "noArticlesMessage": "Aucun article n'est disponible pour le moment",
-  
   "error": "Oups !",
   "retry": "Réessayer",
-  
   "loading": "Chargement...",
-  
   "language": "Langue",
   "about": "À propos",
   "summary": "Résumé",
   "theme": "Thème",
   "lightTheme": "Clair",
-  "darkTheme": "Sombre"
+  "darkTheme": "Sombre",
+  "search": "Recherche",
+  "searchHint": "Rechercher des articles...",
+  "noResultsFound": "Aucun article trouvé",
+  "noResultsFoundDescription": "Nous n'avons pas trouvé d'articles correspondant à votre recherche. Essayez avec d'autres mots-clés !"
 }

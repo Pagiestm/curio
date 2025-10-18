@@ -27,7 +27,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appTitle => 'Curio News';
 
   @override
-  String get appSubtitle => 'Les dernières actualités';
+  String get homeSubtitle => 'Les dernières actualités';
+
+  @override
+  String get searchSubtitle => 'Rechercher des articles de presse';
 
   @override
   String get appDescription =>
@@ -81,4 +84,17 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get darkTheme => 'Sombre';
+
+  @override
+  String get search => 'Recherche';
+
+  @override
+  String get searchHint => 'Rechercher des articles...';
+
+  @override
+  String get noResultsFound => 'Aucun article trouvé';
+
+  @override
+  String get noResultsFoundDescription =>
+      'Nous n\'avons pas trouvé d\'articles correspondant à votre recherche. Essayez avec d\'autres mots-clés !';
 }

@@ -4,5 +4,6 @@ import '../entities/article.dart';
 abstract class ArticleRepository {
   Future<Article?> getArticle(String id);
   Future<List<Article>> getArticles();
-  Future<void> clearHistory();
+  Future<List<Article>> getArticlesByKeyword(String keyword);
+  Future<void> clearArticles();
 }

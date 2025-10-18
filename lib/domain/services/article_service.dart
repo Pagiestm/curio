@@ -14,7 +14,11 @@ class ArticleService {
     return await _repository.getArticles();
   }
 
-  Future<void> clearHistory() async {
-    await _repository.clearHistory();
+  Future<List<Article>> getArticlesByKeyword(String keyword) async {
+    return await _repository.getArticlesByKeyword(keyword);
+  }
+
+  Future<void> clearArticles() async {
+    await _repository.clearArticles();
   }
 }

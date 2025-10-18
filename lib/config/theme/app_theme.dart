@@ -5,12 +5,12 @@ class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
-      
+
       // Couleurs principales
       primaryColor: AppColors.primary,
       primaryColorLight: AppColors.primaryLight,
       primaryColorDark: AppColors.primaryDark,
-      
+
       // Color scheme
       colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
@@ -47,9 +47,7 @@ class AppTheme {
       // Card
       cardTheme: CardThemeData(
         elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         color: AppColors.white,
       ),
 
@@ -75,10 +73,7 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: const Color(0xFFBB86FC),
-          textStyle: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-          ),
+          textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
       ),
 
@@ -102,7 +97,10 @@ class AppTheme {
           borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: AppColors.error, width: 1),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 16,
+        ),
       ),
 
       // Divider
@@ -113,10 +111,7 @@ class AppTheme {
       ),
 
       // Icon
-      iconTheme: const IconThemeData(
-        color: AppColors.textPrimary,
-        size: 24,
-      ),
+      iconTheme: const IconThemeData(color: AppColors.textPrimary, size: 24),
 
       // Text Theme
       textTheme: const TextTheme(
@@ -228,9 +223,7 @@ class AppTheme {
           fontWeight: FontWeight.w600,
         ),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
     );
   }
@@ -254,8 +247,10 @@ class AppTheme {
         secondaryContainer: Color(0xFF018786), // Turquoise foncé
         tertiary: Color(0xFFCF6679), // Rose
         error: Color(0xFFCF6679),
-        surface: Color(0xFF1A1A1A), // Gris neutre moins sombre
-        surfaceContainerHighest: Color(0xFF2A2A2A), // Gris légèrement plus clair
+        surface: Color.fromARGB(255, 20, 20, 20), // Gris neutre moins sombre
+        surfaceContainerHighest: Color(
+          0xFF2A2A2A,
+        ), // Gris légèrement plus clair
         onPrimary: Color(0xFF000000), // Noir sur primaire
         onSecondary: Color(0xFF000000), // Noir sur secondaire
         onSurface: AppColors.grey100,
@@ -282,9 +277,7 @@ class AppTheme {
       // Card
       cardTheme: CardThemeData(
         elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         color: Color(0xFF2A2A2A),
       ),
 
@@ -310,10 +303,7 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: const Color(0xFFEF5350),
-          textStyle: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-          ),
+          textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
       ),
 
@@ -337,7 +327,10 @@ class AppTheme {
           borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: AppColors.error, width: 1),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 16,
+        ),
       ),
 
       // Divider
@@ -348,10 +341,7 @@ class AppTheme {
       ),
 
       // Icon
-      iconTheme: const IconThemeData(
-        color: AppColors.grey100,
-        size: 24,
-      ),
+      iconTheme: const IconThemeData(color: AppColors.grey100, size: 24),
 
       // Text Theme
       textTheme: const TextTheme(
@@ -463,9 +453,7 @@ class AppTheme {
           fontWeight: FontWeight.w600,
         ),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
     );
   }

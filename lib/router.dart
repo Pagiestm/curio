@@ -1,5 +1,6 @@
 import 'package:curio/l10n/app_localizations.dart';
 import 'package:curio/presentation/screens/home_screen.dart';
+import 'package:curio/presentation/screens/search_screen.dart';
 import 'package:curio/presentation/screens/settings_screen.dart';
 import 'package:curio/presentation/screens/article_details_screen.dart';
 import 'package:curio/domain/entities/article.dart';
@@ -11,8 +12,13 @@ import 'package:provider/provider.dart';
 final GoRoute homeRoute = GoRoute(
   path: '/',
   name: 'home',
-  builder: (context, __) =>
-      HomeScreen(),
+  builder: (context, __) => HomeScreen(),
+);
+
+final GoRoute searchRoute = GoRoute(
+  path: '/search',
+  name: 'search',
+  builder: (context, __) => SearchScreen(),
 );
 
 final GoRoute favoritesRoute = GoRoute(
@@ -61,19 +67,25 @@ final GoRouter router = GoRouter(
         return Scaffold(
           body: child,
           bottomNavigationBar: BottomNavigationBar(
-            currentIndex: {
-              '/': 0,
-              '/favorites': 1,
-              '/settings': 2,
-            }[state.fullPath] ?? 0, // Default to home if not found
+            currentIndex:
+                {
+                  '/': 0,
+                  '/search': 1,
+                  '/favorites': 2,
+                  '/settings': 3,
+                }[state.fullPath] ??
+                0,
             onTap: (index) {
               if (index == 0) {
                 context.go('/');
               }
               if (index == 1) {
-                context.go('/favorites');
+                context.go('/search');
               }
               if (index == 2) {
+                context.go('/favorites');
+              }
+              if (index == 3) {
                 context.go('/settings');
               }
             },
@@ -81,6 +93,10 @@ final GoRouter router = GoRouter(
               BottomNavigationBarItem(
                 icon: const Icon(Icons.home),
                 label: l10n.homeTitle,
+              ),
+              BottomNavigationBarItem(
+                icon: const Icon(Icons.search),
+                label: l10n.search,
               ),
               BottomNavigationBarItem(
                 icon: const Icon(Icons.favorite),
@@ -94,7 +110,13 @@ final GoRouter router = GoRouter(
           ),
         );
       },
-      routes: [homeRoute, favoritesRoute, settingsRoute, articleDetailsRoute],
+      routes: [
+        homeRoute,
+        favoritesRoute,
+        settingsRoute,
+        searchRoute,
+        articleDetailsRoute,
+      ],
     ),
   ],
 );

@@ -134,11 +134,17 @@ abstract class AppLocalizations {
   /// **'Curio News'**
   String get appTitle;
 
-  /// Application subtitle
+  /// Home page subtitle
   ///
   /// In en, this message translates to:
   /// **'Latest news'**
-  String get appSubtitle;
+  String get homeSubtitle;
+
+  /// Search page subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Search for news articles'**
+  String get searchSubtitle;
 
   /// Application description
   ///
@@ -241,6 +247,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dark'**
   String get darkTheme;
+
+  /// Search section title
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get search;
+
+  /// Search bar hint text
+  ///
+  /// In en, this message translates to:
+  /// **'Search articles...'**
+  String get searchHint;
+
+  /// No articles found message
+  ///
+  /// In en, this message translates to:
+  /// **'No articles found'**
+  String get noResultsFound;
+
+  /// No results found detailed message
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t find any articles matching your search. Try different keywords!'**
+  String get noResultsFoundDescription;
 }
 
 class _AppLocalizationsDelegate
