@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../domain/entities/article.dart';
+import '../favorites/add_to_favorite_button.dart';
 
 class ArticleDetailsHeader extends StatelessWidget {
   final Article article;
 
-  const ArticleDetailsHeader({
-    super.key,
-    required this.article,
-  });
+  const ArticleDetailsHeader({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +22,15 @@ class ArticleDetailsHeader extends StatelessWidget {
         decoration: BoxDecoration(
           color: Theme.of(context).cardTheme.color,
           shape: BoxShape.circle,
-          boxShadow: Theme.of(context).brightness == Brightness.dark ? null : [
-            BoxShadow(
-              color: Theme.of(context).shadowColor.withOpacity(0.1),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
+          boxShadow: Theme.of(context).brightness == Brightness.dark
+              ? null
+              : [
+                  BoxShadow(
+                    color: Theme.of(context).shadowColor.withOpacity(0.1),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
         ),
         child: IconButton(
           icon: Icon(
@@ -47,24 +47,17 @@ class ArticleDetailsHeader extends StatelessWidget {
           decoration: BoxDecoration(
             color: Theme.of(context).cardTheme.color,
             shape: BoxShape.circle,
-            boxShadow: Theme.of(context).brightness == Brightness.dark ? null : [
-              BoxShadow(
-                color: Theme.of(context).shadowColor.withOpacity(0.1),
-                blurRadius: 8,
-                offset: const Offset(0, 2),
-              ),
-            ],
+            boxShadow: Theme.of(context).brightness == Brightness.dark
+                ? null
+                : [
+                    BoxShadow(
+                      color: Theme.of(context).shadowColor.withOpacity(0.1),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
           ),
-          child: IconButton(
-            icon: Icon(
-              Icons.bookmark_border,
-              color: Theme.of(context).colorScheme.onSurface,
-              size: 24,
-            ),
-            onPressed: () {
-              // TODO: Implémenter les favoris
-            },
-          ),
+          child: AddToFavoriteButton(article: article),
         ),
       ],
       flexibleSpace: FlexibleSpaceBar(
@@ -83,7 +76,9 @@ class ArticleDetailsHeader extends StatelessWidget {
                     loadingBuilder: (context, child, loadingProgress) {
                       if (loadingProgress == null) return child;
                       return Container(
-                        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerHighest,
                         child: Center(
                           child: CircularProgressIndicator(
                             color: Theme.of(context).colorScheme.primary,
@@ -99,15 +94,22 @@ class ArticleDetailsHeader extends StatelessWidget {
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: [
-                              Theme.of(context).colorScheme.surfaceContainerHighest,
-                              Theme.of(context).colorScheme.surfaceContainerHighest.withOpacity(0.8),
+                              Theme.of(
+                                context,
+                              ).colorScheme.surfaceContainerHighest,
+                              Theme.of(context)
+                                  .colorScheme
+                                  .surfaceContainerHighest
+                                  .withOpacity(0.8),
                             ],
                           ),
                         ),
                         child: Center(
                           child: Icon(
                             Icons.article_outlined,
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
                             size: 80,
                           ),
                         ),
@@ -120,8 +122,12 @@ class ArticleDetailsHeader extends StatelessWidget {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                          Theme.of(context).colorScheme.primaryContainer.withOpacity(0.1),
+                          Theme.of(
+                            context,
+                          ).colorScheme.primary.withOpacity(0.1),
+                          Theme.of(
+                            context,
+                          ).colorScheme.primaryContainer.withOpacity(0.1),
                         ],
                       ),
                     ),
@@ -144,10 +150,7 @@ class ArticleDetailsHeader extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.transparent,
-                      Colors.black.withOpacity(0.8),
-                    ],
+                    colors: [Colors.transparent, Colors.black.withOpacity(0.8)],
                   ),
                 ),
               ),

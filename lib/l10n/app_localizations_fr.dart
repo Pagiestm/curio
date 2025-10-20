@@ -33,6 +33,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get searchSubtitle => 'Rechercher des articles de presse';
 
   @override
+  String get favoriteSubtitle => 'Vos articles favoris';
+
+  @override
   String get appDescription =>
       'Votre application de news moderne pour rester informé en temps réel sur les actualités du monde entier.';
 
@@ -97,4 +100,35 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get noResultsFoundDescription =>
       'Nous n\'avons pas trouvé d\'articles correspondant à votre recherche. Essayez avec d\'autres mots-clés !';
+
+  @override
+  String get noFavoritesTitle => 'Aucun favori';
+
+  @override
+  String get noFavoritesDescription =>
+      'Vous n\'avez pas encore ajouté d\'articles à vos favoris. Commencez à explorer et enregistrez vos articles préférés !';
+
+  @override
+  String get filterByReaction => 'Filtrer par réaction';
+
+  @override
+  String get sad => 'Triste';
+
+  @override
+  String get angry => 'En colère';
+
+  @override
+  String get happy => 'Heureux';
+
+  @override
+  String get funny => 'Drôle';
+
+  @override
+  String get removeFromFavorites => 'Retirer des favoris';
+
+  @override
+  String get chooseReaction => 'Choisir une réaction';
+
+  @override
+  String get unknownAuthor => 'Auteur inconnu';
 }

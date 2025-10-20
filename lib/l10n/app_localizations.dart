@@ -146,6 +146,12 @@ abstract class AppLocalizations {
   /// **'Search for news articles'**
   String get searchSubtitle;
 
+  /// Favorites page subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Your favorite articles'**
+  String get favoriteSubtitle;
+
   /// Application description
   ///
   /// In en, this message translates to:
@@ -271,6 +277,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We couldn\'t find any articles matching your search. Try different keywords!'**
   String get noResultsFoundDescription;
+
+  /// No favorites title
+  ///
+  /// In en, this message translates to:
+  /// **'No favorites'**
+  String get noFavoritesTitle;
+
+  /// No favorites detailed message
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t added any articles to your favorites yet. Start exploring and save your favorite articles!'**
+  String get noFavoritesDescription;
+
+  /// Filter articles by reaction type in favorites section
+  ///
+  /// In en, this message translates to:
+  /// **'Filter by Reaction'**
+  String get filterByReaction;
+
+  /// Sad reaction
+  ///
+  /// In en, this message translates to:
+  /// **'Sad'**
+  String get sad;
+
+  /// Angry reaction
+  ///
+  /// In en, this message translates to:
+  /// **'Angry'**
+  String get angry;
+
+  /// Happy reaction
+  ///
+  /// In en, this message translates to:
+  /// **'Happy'**
+  String get happy;
+
+  /// Funny reaction
+  ///
+  /// In en, this message translates to:
+  /// **'Funny'**
+  String get funny;
+
+  /// Tooltip for removing an article from favorites
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from favorites'**
+  String get removeFromFavorites;
+
+  /// Title for choosing a reaction dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a reaction'**
+  String get chooseReaction;
+
+  /// Label for articles with unknown author
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Author'**
+  String get unknownAuthor;
 }
 
 class _AppLocalizationsDelegate

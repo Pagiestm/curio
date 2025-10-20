@@ -33,6 +33,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchSubtitle => 'Search for news articles';
 
   @override
+  String get favoriteSubtitle => 'Your favorite articles';
+
+  @override
   String get appDescription =>
       'Your modern news app to stay informed in real-time about world events.';
 
@@ -96,4 +99,35 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get noResultsFoundDescription =>
       'We couldn\'t find any articles matching your search. Try different keywords!';
+
+  @override
+  String get noFavoritesTitle => 'No favorites';
+
+  @override
+  String get noFavoritesDescription =>
+      'You haven\'t added any articles to your favorites yet. Start exploring and save your favorite articles!';
+
+  @override
+  String get filterByReaction => 'Filter by Reaction';
+
+  @override
+  String get sad => 'Sad';
+
+  @override
+  String get angry => 'Angry';
+
+  @override
+  String get happy => 'Happy';
+
+  @override
+  String get funny => 'Funny';
+
+  @override
+  String get removeFromFavorites => 'Remove from favorites';
+
+  @override
+  String get chooseReaction => 'Choose a reaction';
+
+  @override
+  String get unknownAuthor => 'Unknown Author';
 }

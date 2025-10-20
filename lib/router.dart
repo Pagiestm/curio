@@ -1,6 +1,7 @@
 import 'package:curio/l10n/app_localizations.dart';
 import 'package:curio/presentation/screens/home_screen.dart';
 import 'package:curio/presentation/screens/search_screen.dart';
+import 'package:curio/presentation/screens/favorites_screen.dart';
 import 'package:curio/presentation/screens/settings_screen.dart';
 import 'package:curio/presentation/screens/article_details_screen.dart';
 import 'package:curio/domain/entities/article.dart';
@@ -24,12 +25,7 @@ final GoRoute searchRoute = GoRoute(
 final GoRoute favoritesRoute = GoRoute(
   path: '/favorites',
   name: 'favorites',
-  builder: (context, __) {
-    return Scaffold(
-      appBar: AppBar(title: Text(AppLocalizations.of(context)!.favorites)),
-      body: const Center(child: Text('Favorites Screen')),
-    );
-  },
+  builder: (context, __) => const FavoritesScreen(),
 );
 
 final GoRoute settingsRoute = GoRoute(
