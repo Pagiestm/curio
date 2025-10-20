@@ -32,6 +32,10 @@
   "@searchSubtitle": {
     "description": "Search page subtitle"
   },
+  "favoriteSubtitle": "Your favorite articles",
+  "@favoriteSubtitle": {
+    "description": "Favorites page subtitle"
+  },
   "appDescription": "Your modern news app to stay informed in real-time about world events.",
   "@appDescription": {
     "description": "Application description"
@@ -115,5 +119,45 @@
   "noResultsFoundDescription": "We couldn't find any articles matching your search. Try different keywords!",
   "@noResultsFoundDescription": {
     "description": "No results found detailed message"
+  },
+  "noFavoritesTitle": "No favorites",
+  "@noFavoritesTitle": {
+    "description": "No favorites title"
+  },
+  "noFavoritesDescription": "You haven't added any articles to your favorites yet. Start exploring and save your favorite articles!",
+  "@noFavoritesDescription": {
+    "description": "No favorites detailed message"
+  },
+  "filterByReaction": "Filter by Reaction",
+  "@filterByReaction": {
+    "description": "Filter articles by reaction type in favorites section"
+  },
+  "sad": "Sad",
+  "@sad": {
+    "description": "Sad reaction"
+  },
+  "angry": "Angry",
+  "@angry": {
+    "description": "Angry reaction"
+  },
+  "happy": "Happy",
+  "@happy": {
+    "description": "Happy reaction"
+  },
+  "funny": "Funny",
+  "@funny": {
+    "description": "Funny reaction"
+  },
+  "removeFromFavorites": "Remove from favorites",
+  "@removeFromFavorites": {
+    "description": "Tooltip for removing an article from favorites"
+  },
+  "chooseReaction": "Choose a reaction",
+  "@chooseReaction": {
+    "description": "Title for choosing a reaction dialog"
+  },
+  "unknownAuthor": "Unknown Author",
+  "@unknownAuthor": {
+    "description": "Label for articles with unknown author"
   }
 }

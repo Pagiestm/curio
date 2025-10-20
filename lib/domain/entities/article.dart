@@ -28,7 +28,7 @@ class Article {
       category: json['category']?.toString() ?? '',
       content: json['content']?.toString() ?? '',
       urlImage: json['urlImage']?.toString() ?? '',
-      author: json['author']?.toString() ?? 'Auteur inconnu',
+      author: json['author']?.toString() ?? '',
       publishedAt: json['publishedAt'] != null
           ? DateTime.tryParse(json['publishedAt'].toString()) ?? DateTime.now()
           : DateTime.now(),

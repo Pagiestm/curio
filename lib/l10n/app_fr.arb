@@ -8,6 +8,7 @@
   "appTitle": "Curio News",
   "homeSubtitle": "Les dernières actualités",
   "searchSubtitle": "Rechercher des articles de presse",
+  "favoriteSubtitle": "Vos articles favoris",
   "appDescription": "Votre application de news moderne pour rester informé en temps réel sur les actualités du monde entier.",
   "featuredBadge": "🔥 À LA UNE",
   "latestNews": "Dernières nouvelles",
@@ -28,5 +29,15 @@
   "search": "Recherche",
   "searchHint": "Rechercher des articles...",
   "noResultsFound": "Aucun article trouvé",
-  "noResultsFoundDescription": "Nous n'avons pas trouvé d'articles correspondant à votre recherche. Essayez avec d'autres mots-clés !"
+  "noResultsFoundDescription": "Nous n'avons pas trouvé d'articles correspondant à votre recherche. Essayez avec d'autres mots-clés !",
+  "noFavoritesTitle": "Aucun favori",
+  "noFavoritesDescription": "Vous n'avez pas encore ajouté d'articles à vos favoris. Commencez à explorer et enregistrez vos articles préférés !",
+  "filterByReaction": "Filtrer par réaction",
+  "sad": "Triste",
+  "angry": "En colère",
+  "happy": "Heureux",
+  "funny": "Drôle",
+  "removeFromFavorites": "Retirer des favoris",
+  "chooseReaction": "Choisir une réaction",
+  "unknownAuthor": "Auteur inconnu"
 }

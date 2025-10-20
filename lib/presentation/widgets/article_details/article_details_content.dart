@@ -5,10 +5,7 @@ import '../../../domain/entities/article.dart';
 class ArticleDetailsContent extends StatelessWidget {
   final Article article;
 
-  const ArticleDetailsContent({
-    super.key,
-    required this.article,
-  });
+  const ArticleDetailsContent({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -66,23 +63,33 @@ class ArticleDetailsContent extends StatelessWidget {
                         vertical: 8,
                       ),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).brightness == Brightness.dark 
-                          ? Theme.of(context).colorScheme.primary
-                          : null,
-                        gradient: Theme.of(context).brightness == Brightness.dark ? null : LinearGradient(
-                          colors: [
-                            Theme.of(context).colorScheme.primary,
-                            Theme.of(context).colorScheme.primaryContainer,
-                          ],
-                        ),
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Theme.of(context).colorScheme.primary
+                            : null,
+                        gradient:
+                            Theme.of(context).brightness == Brightness.dark
+                            ? null
+                            : LinearGradient(
+                                colors: [
+                                  Theme.of(context).colorScheme.primary,
+                                  Theme.of(
+                                    context,
+                                  ).colorScheme.primaryContainer,
+                                ],
+                              ),
                         borderRadius: BorderRadius.circular(20),
-                        boxShadow: Theme.of(context).brightness == Brightness.dark ? null : [
-                          BoxShadow(
-                            color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
-                            blurRadius: 8,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
+                        boxShadow:
+                            Theme.of(context).brightness == Brightness.dark
+                            ? null
+                            : [
+                                BoxShadow(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.primary.withOpacity(0.3),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
                       ),
                       child: Text(
                         article.category.toUpperCase(),
@@ -102,7 +109,9 @@ class ArticleDetailsContent extends StatelessWidget {
                       vertical: 8,
                     ),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.surfaceContainerHighest,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
@@ -118,7 +127,9 @@ class ArticleDetailsContent extends StatelessWidget {
                           _formatDate(article.publishedAt),
                           style: TextStyle(
                             fontSize: 13,
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -141,15 +152,23 @@ class ArticleDetailsContent extends StatelessWidget {
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).brightness == Brightness.dark 
-                          ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
-                          : null,
-                        gradient: Theme.of(context).brightness == Brightness.dark ? null : LinearGradient(
-                          colors: [
-                            Theme.of(context).colorScheme.primary.withOpacity(0.2),
-                            Theme.of(context).colorScheme.primaryContainer.withOpacity(0.2),
-                          ],
-                        ),
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Theme.of(
+                                context,
+                              ).colorScheme.primary.withOpacity(0.1)
+                            : null,
+                        gradient:
+                            Theme.of(context).brightness == Brightness.dark
+                            ? null
+                            : LinearGradient(
+                                colors: [
+                                  Theme.of(
+                                    context,
+                                  ).colorScheme.primary.withOpacity(0.2),
+                                  Theme.of(context).colorScheme.primaryContainer
+                                      .withOpacity(0.2),
+                                ],
+                              ),
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
@@ -211,8 +230,7 @@ class ArticleDetailsContent extends StatelessWidget {
                 ),
               ),
 
-            if (article.description.isNotEmpty)
-              const SizedBox(height: 12),
+            if (article.description.isNotEmpty) const SizedBox(height: 12),
 
             // Description en relief
             if (article.description.isNotEmpty)
@@ -223,13 +241,17 @@ class ArticleDetailsContent extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Theme.of(context).cardTheme.color,
                     borderRadius: BorderRadius.circular(12),
-                    boxShadow: Theme.of(context).brightness == Brightness.dark ? null : [
-                      BoxShadow(
-                        color: Theme.of(context).shadowColor.withOpacity(0.08),
-                        blurRadius: 12,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
+                    boxShadow: Theme.of(context).brightness == Brightness.dark
+                        ? null
+                        : [
+                            BoxShadow(
+                              color: Theme.of(
+                                context,
+                              ).shadowColor.withOpacity(0.08),
+                              blurRadius: 12,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
                   ),
                   child: Text(
                     article.description,
@@ -244,8 +266,7 @@ class ArticleDetailsContent extends StatelessWidget {
                 ),
               ),
 
-            if (article.description.isNotEmpty)
-              const SizedBox(height: 32),
+            if (article.description.isNotEmpty) const SizedBox(height: 32),
 
             // Contenu de l'article
             if (article.content.isNotEmpty)
@@ -264,7 +285,7 @@ class ArticleDetailsContent extends StatelessWidget {
                         letterSpacing: -0.1,
                       ),
                     ),
-                    
+
                     // Afficher un message si le contenu semble tronqué
                     if (_isTruncated(article.content))
                       Padding(
@@ -272,10 +293,17 @@ class ArticleDetailsContent extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.surfaceContainerHighest.withOpacity(0.5),
+                            color: Theme.of(context)
+                                .colorScheme
+                                .surfaceContainerHighest
+                                .withOpacity(0.5),
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: Theme.of(context).dividerTheme.color ?? Theme.of(context).colorScheme.outline.withOpacity(0.3),
+                              color:
+                                  Theme.of(context).dividerTheme.color ??
+                                  Theme.of(
+                                    context,
+                                  ).colorScheme.outline.withOpacity(0.3),
                               width: 1,
                             ),
                           ),
@@ -283,7 +311,9 @@ class ArticleDetailsContent extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.info_outline,
-                                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onSurfaceVariant,
                                 size: 20,
                               ),
                               const SizedBox(width: 12),
@@ -292,7 +322,9 @@ class ArticleDetailsContent extends StatelessWidget {
                                   "Le contenu complet n'est pas disponible via l'API",
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurfaceVariant,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -318,7 +350,9 @@ class ArticleDetailsContent extends StatelessWidget {
                       gradient: LinearGradient(
                         colors: [
                           Colors.transparent,
-                          Theme.of(context).colorScheme.outline.withOpacity(0.3),
+                          Theme.of(
+                            context,
+                          ).colorScheme.outline.withOpacity(0.3),
                           Colors.transparent,
                         ],
                       ),
@@ -385,12 +419,12 @@ class ArticleDetailsContent extends StatelessWidget {
   String _cleanContent(String content) {
     // Supprimer les marqueurs de troncature de NewsAPI comme "[+17712 chars]"
     final cleaned = content.replaceAll(RegExp(r'\[\+\d+ chars\]'), '');
-    
+
     // Si le contenu est très court après nettoyage, on peut ajouter un message
     if (cleaned.trim().isEmpty) {
       return "Le contenu complet de cet article n'est pas disponible. Visitez la source pour lire l'article complet.";
     }
-    
+
     return cleaned.trim();
   }
 

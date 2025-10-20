@@ -19,7 +19,9 @@ class CommonHeader extends StatelessWidget {
       case 'search':
         subtitle = l10n.searchSubtitle;
         break;
-      // Add more cases for other routes as needed
+      case 'favorites':
+        subtitle = l10n.favoriteSubtitle;
+        break;
     }
 
     return Container(
