@@ -58,15 +58,11 @@ class ArticleLocalDataSourceImpl implements ArticleLocalDataSource {
 
     final now = DateTime.now().toIso8601String();
     for (var article in articles) {
-      batch.insert(
-        'cached_articles',
-        {
-          ...article.toJson(),
-          'keyword': '',
-          'cachedAt': now,
-        },
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      batch.insert('cached_articles', {
+        ...article.toJson(),
+        'keyword': '',
+        'cachedAt': now,
+      }, conflictAlgorithm: ConflictAlgorithm.replace);
     }
 
     await batch.commit(noResult: true);
@@ -80,23 +76,15 @@ class ArticleLocalDataSourceImpl implements ArticleLocalDataSource {
     final db = await databaseHelper.database;
     final batch = db.batch();
 
-    batch.delete(
-      'cached_articles',
-      where: 'keyword = ?',
-      whereArgs: [keyword],
-    );
+    batch.delete('cached_articles', where: 'keyword = ?', whereArgs: [keyword]);
 
     final now = DateTime.now().toIso8601String();
     for (var article in articles) {
-      batch.insert(
-        'cached_articles',
-        {
-          ...article.toJson(),
-          'keyword': keyword,
-          'cachedAt': now,
-        },
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      batch.insert('cached_articles', {
+        ...article.toJson(),
+        'keyword': keyword,
+        'cachedAt': now,
+      }, conflictAlgorithm: ConflictAlgorithm.replace);
     }
 
     await batch.commit(noResult: true);

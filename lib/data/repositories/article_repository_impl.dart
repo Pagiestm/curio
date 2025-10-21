@@ -1,3 +1,4 @@
+import 'package:curio/config/logger.dart';
 import 'package:curio/data/datasources/article_local_datasource.dart';
 import 'package:curio/data/datasources/article_remote_datasource.dart';
 import 'package:curio/domain/entities/article.dart';
@@ -6,7 +7,7 @@ import 'package:curio/domain/repositories/article_repository.dart';
 class ArticleRepositoryImpl implements ArticleRepository {
   final ArticleRemoteDataSource remoteArticleDataSource;
   final ArticleLocalDataSource localArticleDataSource;
-  
+
   final int cacheValidityDuration;
 
   ArticleRepositoryImpl(
@@ -17,10 +18,10 @@ class ArticleRepositoryImpl implements ArticleRepository {
 
   bool _isCacheValid(DateTime? lastCacheTime) {
     if (lastCacheTime == null) return false;
-    
+
     final now = DateTime.now();
     final difference = now.difference(lastCacheTime);
-    
+
     return difference.inMinutes < cacheValidityDuration;
   }
 
@@ -29,18 +30,18 @@ class ArticleRepositoryImpl implements ArticleRepository {
     try {
       // Vérifier le cache d'abord
       final lastCacheTime = await localArticleDataSource.getLastCacheTime();
-      
+
       if (_isCacheValid(lastCacheTime)) {
-        print('Using cached articles');
+        AppLogger.info('Using cached articles');
         final cachedArticles = await localArticleDataSource.getCachedArticles();
-        
+
         if (cachedArticles.isNotEmpty) {
           return cachedArticles;
         }
       }
 
       // Si le cache est invalide ou vide, faire un appel API
-      print('Fetching fresh articles from API');
+      AppLogger.info('Fetching fresh articles from API');
       final articlesRaw = await remoteArticleDataSource.fetchArticles();
 
       final articles = articlesRaw.map((raw) {
@@ -62,14 +63,15 @@ class ArticleRepositoryImpl implements ArticleRepository {
 
       return articles;
     } catch (e) {
-      print('Error fetching articles: $e');
+      // En cas d'erreur API, essayer de retourner le cache même expiré
+      AppLogger.error('Error fetching articles', e);
       final cachedArticles = await localArticleDataSource.getCachedArticles();
-      
+
       if (cachedArticles.isNotEmpty) {
-        print('Returning expired cache due to API error');
+        AppLogger.info('Returning expired cache due to API error');
         return cachedArticles;
       }
-      
+
       throw Exception('Failed to fetch articles: $e');
     }
   }
@@ -77,20 +79,20 @@ class ArticleRepositoryImpl implements ArticleRepository {
   @override
   Future<List<Article>> getArticlesByKeyword(String keyword) async {
     try {
-      final lastCacheTime = 
-          await localArticleDataSource.getLastCacheTimeForKeyword(keyword);
-      
+      final lastCacheTime = await localArticleDataSource
+          .getLastCacheTimeForKeyword(keyword);
+
       if (_isCacheValid(lastCacheTime)) {
-        print('Using cached articles for keyword: $keyword');
-        final cachedArticles = 
-            await localArticleDataSource.getCachedArticlesByKeyword(keyword);
-        
+        AppLogger.info('Using cached articles for keyword: $keyword');
+        final cachedArticles = await localArticleDataSource
+            .getCachedArticlesByKeyword(keyword);
+
         if (cachedArticles.isNotEmpty) {
           return cachedArticles;
         }
       }
 
-      print('Fetching fresh articles from API for keyword: $keyword');
+      AppLogger.info('Fetching fresh articles from API for keyword: $keyword');
       final articlesRaw = await remoteArticleDataSource.fetchArticlesByKeyword(
         keyword,
       );
@@ -115,15 +117,15 @@ class ArticleRepositoryImpl implements ArticleRepository {
       return articles;
     } catch (e) {
       // En cas d'erreur API, essayer de retourner le cache même expiré
-      print('Error fetching articles by keyword: $e');
-      final cachedArticles = 
-          await localArticleDataSource.getCachedArticlesByKeyword(keyword);
-      
+      AppLogger.error('Error fetching articles by keyword', e);
+      final cachedArticles = await localArticleDataSource
+          .getCachedArticlesByKeyword(keyword);
+
       if (cachedArticles.isNotEmpty) {
-        print('Returning expired cache due to API error');
+        AppLogger.info('Returning expired cache due to API error');
         return cachedArticles;
       }
-      
+
       throw Exception('Failed to fetch articles by keyword: $e');
     }
   }

@@ -40,7 +40,9 @@ class ArticleDetailsContent extends StatelessWidget {
                       Shadow(
                         offset: const Offset(0, 1),
                         blurRadius: 2,
-                        color: Theme.of(context).shadowColor.withOpacity(0.1),
+                        color: Theme.of(
+                          context,
+                        ).shadowColor.withValues(alpha: 0.1),
                       ),
                     ],
                   ),
@@ -85,7 +87,7 @@ class ArticleDetailsContent extends StatelessWidget {
                                 BoxShadow(
                                   color: Theme.of(
                                     context,
-                                  ).colorScheme.primary.withOpacity(0.3),
+                                  ).colorScheme.primary.withValues(alpha: 0.3),
                                   blurRadius: 8,
                                   offset: const Offset(0, 2),
                                 ),
@@ -155,7 +157,7 @@ class ArticleDetailsContent extends StatelessWidget {
                         color: Theme.of(context).brightness == Brightness.dark
                             ? Theme.of(
                                 context,
-                              ).colorScheme.primary.withOpacity(0.1)
+                              ).colorScheme.primary.withValues(alpha: 0.1)
                             : null,
                         gradient:
                             Theme.of(context).brightness == Brightness.dark
@@ -164,9 +166,9 @@ class ArticleDetailsContent extends StatelessWidget {
                                 colors: [
                                   Theme.of(
                                     context,
-                                  ).colorScheme.primary.withOpacity(0.2),
+                                  ).colorScheme.primary.withValues(alpha: 0.2),
                                   Theme.of(context).colorScheme.primaryContainer
-                                      .withOpacity(0.2),
+                                      .withValues(alpha: 0.2),
                                 ],
                               ),
                         shape: BoxShape.circle,
@@ -205,7 +207,9 @@ class ArticleDetailsContent extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       Colors.transparent,
-                      Theme.of(context).colorScheme.outline.withOpacity(0.3),
+                      Theme.of(
+                        context,
+                      ).colorScheme.outline.withValues(alpha: 0.3),
                       Colors.transparent,
                     ],
                   ),
@@ -247,7 +251,7 @@ class ArticleDetailsContent extends StatelessWidget {
                             BoxShadow(
                               color: Theme.of(
                                 context,
-                              ).shadowColor.withOpacity(0.08),
+                              ).shadowColor.withValues(alpha: 0.08),
                               blurRadius: 12,
                               offset: const Offset(0, 4),
                             ),
@@ -296,14 +300,14 @@ class ArticleDetailsContent extends StatelessWidget {
                             color: Theme.of(context)
                                 .colorScheme
                                 .surfaceContainerHighest
-                                .withOpacity(0.5),
+                                .withValues(alpha: 0.5),
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
                               color:
                                   Theme.of(context).dividerTheme.color ??
                                   Theme.of(
                                     context,
-                                  ).colorScheme.outline.withOpacity(0.3),
+                                  ).colorScheme.outline.withValues(alpha: 0.3),
                               width: 1,
                             ),
                           ),
@@ -352,7 +356,7 @@ class ArticleDetailsContent extends StatelessWidget {
                           Colors.transparent,
                           Theme.of(
                             context,
-                          ).colorScheme.outline.withOpacity(0.3),
+                          ).colorScheme.outline.withValues(alpha: 0.3),
                           Colors.transparent,
                         ],
                       ),

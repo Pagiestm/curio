@@ -6,11 +6,7 @@ class FeaturedArticleCard extends StatelessWidget {
   final Article article;
   final VoidCallback? onTap;
 
-  const FeaturedArticleCard({
-    super.key,
-    required this.article,
-    this.onTap,
-  });
+  const FeaturedArticleCard({super.key, required this.article, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +20,7 @@ class FeaturedArticleCard extends StatelessWidget {
           boxShadow: Theme.of(context).brightness == Brightness.light
               ? [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.08),
+                    color: Colors.black.withValues(alpha: 0.08),
                     blurRadius: 20,
                     offset: const Offset(0, 8),
                   ),
@@ -47,34 +43,46 @@ class FeaturedArticleCard extends StatelessWidget {
                         loadingBuilder: (context, child, loadingProgress) {
                           if (loadingProgress == null) return child;
                           return Container(
-                            color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.surfaceContainerHighest,
                             child: const Center(
                               child: SizedBox(
                                 width: 36,
                                 height: 36,
-                                child: CircularProgressIndicator(strokeWidth: 2),
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
                               ),
                             ),
                           );
                         },
                         errorBuilder: (context, error, stackTrace) => Container(
-                          color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.surfaceContainerHighest,
                           child: Center(
                             child: Icon(
                               Icons.broken_image,
                               size: 64,
-                              color: Theme.of(context).colorScheme.onSurfaceVariant,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
                             ),
                           ),
                         ),
                       )
                     : Container(
-                        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerHighest,
                         child: Center(
                           child: Icon(
                             Icons.article_outlined,
                             size: 64,
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
                           ),
                         ),
                       ),
@@ -88,8 +96,8 @@ class FeaturedArticleCard extends StatelessWidget {
                     end: Alignment.bottomCenter,
                     colors: [
                       Colors.transparent,
-                      Theme.of(context).shadowColor.withOpacity(0.1),
-                      Theme.of(context).shadowColor.withOpacity(0.7),
+                      Theme.of(context).shadowColor.withValues(alpha: 0.1),
+                      Theme.of(context).shadowColor.withValues(alpha: 0.7),
                     ],
                     stops: const [0.3, 0.6, 1.0],
                   ),
@@ -117,10 +125,14 @@ class FeaturedArticleCard extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.primary,
                             borderRadius: BorderRadius.circular(8),
-                            boxShadow: Theme.of(context).brightness == Brightness.light
+                            boxShadow:
+                                Theme.of(context).brightness == Brightness.light
                                 ? [
                                     BoxShadow(
-                                      color: Theme.of(context).colorScheme.primary.withOpacity(0.4),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary
+                                          .withValues(alpha: 0.4),
                                       blurRadius: 8,
                                       offset: const Offset(0, 2),
                                     ),
@@ -149,10 +161,7 @@ class FeaturedArticleCard extends StatelessWidget {
                           height: 1.25,
                           letterSpacing: -0.5,
                           shadows: [
-                            Shadow(
-                              color: Colors.black38,
-                              blurRadius: 12,
-                            ),
+                            Shadow(color: Colors.black38, blurRadius: 12),
                           ],
                         ),
                         maxLines: 3,
@@ -165,15 +174,12 @@ class FeaturedArticleCard extends StatelessWidget {
                         Text(
                           article.description,
                           style: TextStyle(
-                            color: Colors.white.withOpacity(0.95),
+                            color: Colors.white.withValues(alpha: 0.95),
                             fontSize: 15,
                             height: 1.4,
                             fontWeight: FontWeight.w400,
                             shadows: const [
-                              Shadow(
-                                color: Colors.black26,
-                                blurRadius: 8,
-                              ),
+                              Shadow(color: Colors.black26, blurRadius: 8),
                             ],
                           ),
                           maxLines: 2,

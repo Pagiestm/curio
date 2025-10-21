@@ -16,9 +16,7 @@ class SettingsScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(
-            child: SettingsHeader(),
-          ),
+          SliverToBoxAdapter(child: SettingsHeader()),
           SliverPadding(
             padding: const EdgeInsets.all(20),
             sliver: SliverList(

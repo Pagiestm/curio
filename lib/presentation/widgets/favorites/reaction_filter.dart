@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:curio/domain/entities/favorite.dart';
 import 'package:curio/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';

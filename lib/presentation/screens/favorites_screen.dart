@@ -107,8 +107,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                 l10n.noFavoritesDescription,
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: theme.colorScheme.onSurface
-                                      .withOpacity(0.6),
+                                  color: theme.colorScheme.onSurface.withValues(
+                                    alpha: 0.6,
+                                  ),
                                   height: 1.5,
                                 ),
                                 textAlign: TextAlign.center,
