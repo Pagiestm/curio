@@ -1,3 +1,4 @@
+import 'package:curio/config/logger.dart';
 import 'package:curio/data/datasources/article_local_datasource.dart';
 import 'package:curio/data/datasources/article_remote_datasource.dart';
 import 'package:curio/data/datasources/database_helper.dart';
@@ -23,6 +24,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
+  AppLogger.init();
   runApp(const MyApp());
 }
 
@@ -46,7 +48,11 @@ class MyApp extends StatelessWidget {
           update: (_, dbHelper, __) => FavoriteLocalDataSourceImpl(dbHelper),
         ),
         // Repository
-        ProxyProvider2<ArticleRemoteDataSource, ArticleLocalDataSource, ArticleRepository>(
+        ProxyProvider2<
+          ArticleRemoteDataSource,
+          ArticleLocalDataSource,
+          ArticleRepository
+        >(
           update: (_, remoteDataSource, localDataSource, __) =>
               ArticleRepositoryImpl(
                 remoteDataSource,

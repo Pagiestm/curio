@@ -1,3 +1,4 @@
+import 'package:curio/config/logger.dart';
 import 'package:curio/domain/entities/article.dart';
 import 'package:curio/domain/entities/favorite.dart';
 import 'package:curio/domain/services/favorite_service.dart';
@@ -85,9 +86,9 @@ class FavoriteViewmodel extends ChangeNotifier {
   }
 
   Future<bool> isFavorite(String articleId) async {
-    print("Checking if favorite: $articleId");
+    AppLogger.debug("Checking if favorite: $articleId");
     final t = await _favoriteService.isFavorite(articleId);
-    print("Is favorite: $t");
+    AppLogger.debug("Is favorite: $t");
     return t;
   }
 

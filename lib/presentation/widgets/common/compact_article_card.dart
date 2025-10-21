@@ -7,11 +7,7 @@ class CompactArticleCard extends StatelessWidget {
   final Article article;
   final VoidCallback? onTap;
 
-  const CompactArticleCard({
-    super.key,
-    required this.article,
-    this.onTap,
-  });
+  const CompactArticleCard({super.key, required this.article, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +21,14 @@ class CompactArticleCard extends StatelessWidget {
           color: Theme.of(context).cardTheme.color,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: Theme.of(context).dividerTheme.color ?? Theme.of(context).colorScheme.outline,
+            color:
+                Theme.of(context).dividerTheme.color ??
+                Theme.of(context).colorScheme.outline,
             width: 1,
           ),
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).shadowColor.withOpacity(0.03),
+              color: Theme.of(context).shadowColor.withValues(alpha: 0.03),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -56,23 +54,31 @@ class CompactArticleCard extends StatelessWidget {
                           loadingBuilder: (context, child, loadingProgress) {
                             if (loadingProgress == null) return child;
                             return Container(
-                              color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.surfaceContainerHighest,
                               child: const Center(
                                 child: SizedBox(
                                   width: 20,
                                   height: 20,
-                                  child: CircularProgressIndicator(strokeWidth: 2),
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                  ),
                                 ),
                               ),
                             );
                           },
                           errorBuilder: (context, error, stackTrace) {
                             return Container(
-                              color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.surfaceContainerHighest,
                               child: Center(
                                 child: Icon(
                                   Icons.broken_image,
-                                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurfaceVariant,
                                   size: 36,
                                 ),
                               ),
@@ -80,11 +86,15 @@ class CompactArticleCard extends StatelessWidget {
                           },
                         )
                       : Container(
-                          color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.surfaceContainerHighest,
                           child: Center(
                             child: Icon(
                               Icons.article_outlined,
-                              color: Theme.of(context).colorScheme.onSurfaceVariant,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
                               size: 36,
                             ),
                           ),
@@ -109,7 +119,9 @@ class CompactArticleCard extends StatelessWidget {
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.primary.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: Text(

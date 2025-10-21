@@ -1,6 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:curio/config/logger.dart';
 
 abstract class ArticleRemoteDataSource {
   Future<List<dynamic>> fetchArticles();
@@ -30,7 +31,7 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
 
   @override
   Future<List<dynamic>> fetchArticlesByKeyword(String keyword) async {
-    print('Fetching articles for keyword: $keyword');
+    AppLogger.debug('Fetching articles for keyword: $keyword');
     final response = await client.get(
       Uri.parse(
         'https://newsapi.org/v2/top-headlines?country=us&q=$keyword&apiKey=${dotenv.env['NEWS_API_TOKEN']}',

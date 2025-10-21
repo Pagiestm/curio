@@ -61,7 +61,7 @@ class FavoriteCard extends StatelessWidget {
                     child: Icon(
                       Icons.image_not_supported,
                       size: 48,
-                      color: theme.colorScheme.onSurface.withOpacity(0.3),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
                     ),
                   );
                 },
@@ -91,7 +91,7 @@ class FavoriteCard extends StatelessWidget {
                     favorite.articleDescription,
                     style: TextStyle(
                       fontSize: 14,
-                      color: theme.colorScheme.onSurface.withOpacity(0.7),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                       height: 1.4,
                     ),
                     maxLines: 3,
@@ -105,7 +105,9 @@ class FavoriteCard extends StatelessWidget {
                       Icon(
                         Icons.person_outline,
                         size: 16,
-                        color: theme.colorScheme.onSurface.withOpacity(0.6),
+                        color: theme.colorScheme.onSurface.withValues(
+                          alpha: 0.6,
+                        ),
                       ),
                       const SizedBox(width: 4),
                       Text(
@@ -114,7 +116,9 @@ class FavoriteCard extends StatelessWidget {
                             : AppLocalizations.of(context)!.unknownAuthor,
                         style: TextStyle(
                           fontSize: 12,
-                          color: theme.colorScheme.onSurface.withOpacity(0.6),
+                          color: theme.colorScheme.onSurface.withValues(
+                            alpha: 0.6,
+                          ),
                         ),
                       ),
                     ],
