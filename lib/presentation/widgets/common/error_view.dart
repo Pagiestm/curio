@@ -5,16 +5,12 @@ class ErrorView extends StatelessWidget {
   final String error;
   final VoidCallback onRetry;
 
-  const ErrorView({
-    super.key,
-    required this.error,
-    required this.onRetry,
-  });
+  const ErrorView({super.key, required this.error, required this.onRetry});
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    
+
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -24,7 +20,9 @@ class ErrorView extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.error.withOpacity(0.1),
+                color: Theme.of(
+                  context,
+                ).colorScheme.error.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: Icon(

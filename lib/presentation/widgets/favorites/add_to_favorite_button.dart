@@ -100,9 +100,9 @@ class _AddToFavoriteButtonState extends State<AddToFavoriteButton> {
   }
 
   Future<void> _removeFromFavorite() async {
+    final l10n = AppLocalizations.of(context)!;
     final vm = context.read<FavoriteViewmodel>();
     await vm.removeFavoriteByArticleId(widget.article.id);
-    final l10n = AppLocalizations.of(context)!;
     if (mounted) {
       setState(() {
         _isFavorite = false;

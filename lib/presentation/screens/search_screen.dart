@@ -80,8 +80,9 @@ class SearchScreen extends StatelessWidget {
                                 l10n.noResultsFoundDescription,
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: theme.colorScheme.onSurface
-                                      .withOpacity(0.6),
+                                  color: theme.colorScheme.onSurface.withValues(
+                                    alpha: 0.6,
+                                  ),
                                   height: 1.5,
                                 ),
                                 textAlign: TextAlign.center,

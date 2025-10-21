@@ -1,6 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:curio/config/logger.dart';
 
 abstract class ArticleRemoteDataSource {
   Future<List<dynamic>> fetchArticles(String languageCode);
@@ -37,6 +38,7 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
     String languageCode,
   ) async {
     print(languageCode);
+    AppLogger.debug('Fetching articles for keyword: $keyword');
     final response = await client.get(
       Uri.parse(
         'https://gnews.io/api/v4/search?q=$keyword&lang=$languageCode&apikey=${dotenv.env['GNEWS_API_TOKEN']}',

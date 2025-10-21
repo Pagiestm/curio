@@ -14,7 +14,9 @@ class SettingsHeader extends StatelessWidget {
         color: Theme.of(context).scaffoldBackgroundColor,
         border: Border(
           bottom: BorderSide(
-            color: Theme.of(context).dividerTheme.color ?? Theme.of(context).colorScheme.outline,
+            color:
+                Theme.of(context).dividerTheme.color ??
+                Theme.of(context).colorScheme.outline,
             width: 1,
           ),
         ),
@@ -29,7 +31,9 @@ class SettingsHeader extends StatelessWidget {
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                color: Theme.of(
+                  context,
+                ).colorScheme.primary.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(

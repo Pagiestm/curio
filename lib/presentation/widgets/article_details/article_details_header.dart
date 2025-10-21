@@ -26,7 +26,7 @@ class ArticleDetailsHeader extends StatelessWidget {
               ? null
               : [
                   BoxShadow(
-                    color: Theme.of(context).shadowColor.withOpacity(0.1),
+                    color: Theme.of(context).shadowColor.withValues(alpha: 0.1),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),
@@ -51,7 +51,9 @@ class ArticleDetailsHeader extends StatelessWidget {
                 ? null
                 : [
                     BoxShadow(
-                      color: Theme.of(context).shadowColor.withOpacity(0.1),
+                      color: Theme.of(
+                        context,
+                      ).shadowColor.withValues(alpha: 0.1),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -100,7 +102,7 @@ class ArticleDetailsHeader extends StatelessWidget {
                               Theme.of(context)
                                   .colorScheme
                                   .surfaceContainerHighest
-                                  .withOpacity(0.8),
+                                  .withValues(alpha: 0.8),
                             ],
                           ),
                         ),
@@ -124,10 +126,10 @@ class ArticleDetailsHeader extends StatelessWidget {
                         colors: [
                           Theme.of(
                             context,
-                          ).colorScheme.primary.withOpacity(0.1),
+                          ).colorScheme.primary.withValues(alpha: 0.1),
                           Theme.of(
                             context,
-                          ).colorScheme.primaryContainer.withOpacity(0.1),
+                          ).colorScheme.primaryContainer.withValues(alpha: 0.1),
                         ],
                       ),
                     ),
@@ -150,7 +152,10 @@ class ArticleDetailsHeader extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Colors.transparent, Colors.black.withOpacity(0.8)],
+                    colors: [
+                      Colors.transparent,
+                      Colors.black.withValues(alpha: 0.8),
+                    ],
                   ),
                 ),
               ),

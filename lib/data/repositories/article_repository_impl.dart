@@ -1,3 +1,4 @@
+import 'package:curio/config/logger.dart';
 import 'package:curio/data/datasources/article_local_datasource.dart';
 import 'package:curio/data/datasources/article_remote_datasource.dart';
 import 'package:curio/domain/entities/article.dart';
@@ -33,7 +34,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
       );
 
       if (_isCacheValid(lastCacheTime)) {
-        print('Using cached articles for language: $languageCode');
+        AppLogger.info('Using cached articles');
         final cachedArticles = await localArticleDataSource.getCachedArticles(
           languageCode,
         );
@@ -44,7 +45,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
       }
 
       // Si le cache est invalide ou vide, faire un appel API
-      print('Fetching fresh articles from API for language: $languageCode');
+      AppLogger.info('Fetching fresh articles from API');
       final articlesRaw = await remoteArticleDataSource.fetchArticles(
         languageCode,
       );
@@ -69,13 +70,13 @@ class ArticleRepositoryImpl implements ArticleRepository {
 
       return articles;
     } catch (e) {
-      print('Error fetching articles: $e');
+      AppLogger.error('Error fetching articles', e);
       final cachedArticles = await localArticleDataSource.getCachedArticles(
         languageCode,
       );
 
       if (cachedArticles.isNotEmpty) {
-        print('Returning expired cache due to API error');
+        AppLogger.info('Returning expired cache due to API error');
         return cachedArticles;
       }
 
@@ -93,9 +94,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
           .getLastCacheTimeForKeyword(keyword, languageCode);
 
       if (_isCacheValid(lastCacheTime)) {
-        print(
-          'Using cached articles for keyword: $keyword and language: $languageCode',
-        );
+        AppLogger.info('Using cached articles for keyword: $keyword');
         final cachedArticles = await localArticleDataSource
             .getCachedArticlesByKeyword(keyword, languageCode);
 
@@ -104,9 +103,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
         }
       }
 
-      print(
-        'Fetching fresh articles from API for keyword: $keyword and language: $languageCode',
-      );
+      AppLogger.info('Fetching fresh articles from API for keyword: $keyword');
       final articlesRaw = await remoteArticleDataSource.fetchArticlesByKeyword(
         keyword,
         languageCode,
@@ -133,12 +130,12 @@ class ArticleRepositoryImpl implements ArticleRepository {
       return articles;
     } catch (e) {
       // En cas d'erreur API, essayer de retourner le cache même expiré
-      print('Error fetching articles by keyword: $e');
+      AppLogger.error('Error fetching articles by keyword', e);
       final cachedArticles = await localArticleDataSource
           .getCachedArticlesByKeyword(keyword, languageCode);
 
       if (cachedArticles.isNotEmpty) {
-        print('Returning expired cache due to API error');
+        AppLogger.info('Returning expired cache due to API error');
         return cachedArticles;
       }
 
