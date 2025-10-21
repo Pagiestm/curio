@@ -10,12 +10,15 @@ class ArticleService {
     return await _repository.getArticle(id);
   }
 
-  Future<List<Article>> getArticles() async {
-    return await _repository.getArticles();
+  Future<List<Article>> getArticles(String languageCode) async {
+    return await _repository.getArticles(languageCode);
   }
 
-  Future<List<Article>> getArticlesByKeyword(String keyword) async {
-    return await _repository.getArticlesByKeyword(keyword);
+  Future<List<Article>> getArticlesByKeyword(
+    String keyword,
+    String languageCode,
+  ) async {
+    return await _repository.getArticlesByKeyword(keyword, languageCode);
   }
 
   Future<void> clearArticles() async {

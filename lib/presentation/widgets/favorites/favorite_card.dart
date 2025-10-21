@@ -32,6 +32,7 @@ class FavoriteCard extends StatelessWidget {
           urlImage: favorite.articleUrlImage,
           author: favorite.articleAuthor,
           publishedAt: favorite.articlePublishedAt,
+          language: 'fr', // Langue par défaut pour les favoris
         );
         context.go('/article', extra: article);
       },

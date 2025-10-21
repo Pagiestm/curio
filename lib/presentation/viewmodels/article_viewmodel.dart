@@ -1,9 +1,11 @@
 import 'package:curio/domain/entities/article.dart';
 import 'package:curio/domain/services/article_service.dart';
+import 'package:curio/presentation/viewmodels/settings_viewmodel.dart';
 import 'package:flutter/foundation.dart';
 
 class ArticleViewModel extends ChangeNotifier {
   final ArticleService _articleService;
+  final SettingsViewModel _settingsViewModel;
   List<Article> _articles = [];
   bool _loading = false;
   String? _error;
@@ -12,15 +14,29 @@ class ArticleViewModel extends ChangeNotifier {
   bool get loading => _loading;
   String? get error => _error;
 
-  ArticleViewModel(this._articleService) {
+  ArticleViewModel(this._articleService, this._settingsViewModel) {
     _loadInitialData();
+    _settingsViewModel.addListener(_onLocaleChanged);
+  }
+
+  void _onLocaleChanged() {
+    // Recharger les articles lorsque la langue change
+    getArticles();
+  }
+
+  @override
+  void dispose() {
+    _settingsViewModel.removeListener(_onLocaleChanged);
+    super.dispose();
   }
 
   Future<void> fetchArticles() async {
     _loading = true;
     notifyListeners();
 
-    _articles = await _articleService.getArticles();
+    _articles = await _articleService.getArticles(
+      _settingsViewModel.locale.languageCode,
+    );
 
     _loading = false;
     notifyListeners();
@@ -29,7 +45,9 @@ class ArticleViewModel extends ChangeNotifier {
   Future<void> _loadInitialData() async {
     _setLoading(true);
     try {
-      _articles = await _articleService.getArticles();
+      _articles = await _articleService.getArticles(
+        _settingsViewModel.locale.languageCode,
+      );
     } catch (e) {
       _setError('Erreur de chargement: $e');
     } finally {
@@ -50,7 +68,9 @@ class ArticleViewModel extends ChangeNotifier {
   }
 
   Future<void> getArticles() async => _update(() async {
-    _articles = await _articleService.getArticles();
+    _articles = await _articleService.getArticles(
+      _settingsViewModel.locale.languageCode,
+    );
   });
 
   void _setLoading(bool loading) {

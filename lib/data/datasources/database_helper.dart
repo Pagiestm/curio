@@ -19,7 +19,7 @@ class DatabaseHelper {
 
     return await openDatabase(
       path,
-      version: 2,
+      version: 3,
       onCreate: _createDB,
       onUpgrade: _onUpgrade,
     );
@@ -55,7 +55,8 @@ class DatabaseHelper {
         author TEXT NOT NULL,
         publishedAt TEXT NOT NULL,
         keyword TEXT,
-        cachedAt TEXT NOT NULL
+        cachedAt TEXT NOT NULL,
+        language TEXT NOT NULL DEFAULT 'en'
       )
     ''');
   }
@@ -75,6 +76,12 @@ class DatabaseHelper {
           keyword TEXT,
           cachedAt TEXT NOT NULL
         )
+      ''');
+    }
+    if (oldVersion < 3) {
+      // Ajouter la colonne language à la table cached_articles
+      await db.execute('''
+        ALTER TABLE cached_articles ADD COLUMN language TEXT NOT NULL DEFAULT 'en'
       ''');
     }
   }

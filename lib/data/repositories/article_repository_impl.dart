@@ -26,14 +26,18 @@ class ArticleRepositoryImpl implements ArticleRepository {
   }
 
   @override
-  Future<List<Article>> getArticles() async {
+  Future<List<Article>> getArticles(String languageCode) async {
     try {
-      // Vérifier le cache d'abord
-      final lastCacheTime = await localArticleDataSource.getLastCacheTime();
+      // Vérifier le cache d'abord avec la langue
+      final lastCacheTime = await localArticleDataSource.getLastCacheTime(
+        languageCode,
+      );
 
       if (_isCacheValid(lastCacheTime)) {
         AppLogger.info('Using cached articles');
-        final cachedArticles = await localArticleDataSource.getCachedArticles();
+        final cachedArticles = await localArticleDataSource.getCachedArticles(
+          languageCode,
+        );
 
         if (cachedArticles.isNotEmpty) {
           return cachedArticles;
@@ -42,7 +46,9 @@ class ArticleRepositoryImpl implements ArticleRepository {
 
       // Si le cache est invalide ou vide, faire un appel API
       AppLogger.info('Fetching fresh articles from API');
-      final articlesRaw = await remoteArticleDataSource.fetchArticles();
+      final articlesRaw = await remoteArticleDataSource.fetchArticles(
+        languageCode,
+      );
 
       final articles = articlesRaw.map((raw) {
         final json = {
@@ -51,9 +57,10 @@ class ArticleRepositoryImpl implements ArticleRepository {
           'description': raw['description'],
           'category': raw['source']['name'],
           'content': raw['content'],
-          'urlImage': raw['urlToImage'],
+          'urlImage': raw['image'],
           'author': raw['author'] ?? '',
           'publishedAt': raw['publishedAt'] ?? DateTime.now().toIso8601String(),
+          'language': languageCode,
         };
         return Article.fromJson(json);
       }).toList();
@@ -63,9 +70,10 @@ class ArticleRepositoryImpl implements ArticleRepository {
 
       return articles;
     } catch (e) {
-      // En cas d'erreur API, essayer de retourner le cache même expiré
       AppLogger.error('Error fetching articles', e);
-      final cachedArticles = await localArticleDataSource.getCachedArticles();
+      final cachedArticles = await localArticleDataSource.getCachedArticles(
+        languageCode,
+      );
 
       if (cachedArticles.isNotEmpty) {
         AppLogger.info('Returning expired cache due to API error');
@@ -77,15 +85,18 @@ class ArticleRepositoryImpl implements ArticleRepository {
   }
 
   @override
-  Future<List<Article>> getArticlesByKeyword(String keyword) async {
+  Future<List<Article>> getArticlesByKeyword(
+    String keyword,
+    String languageCode,
+  ) async {
     try {
       final lastCacheTime = await localArticleDataSource
-          .getLastCacheTimeForKeyword(keyword);
+          .getLastCacheTimeForKeyword(keyword, languageCode);
 
       if (_isCacheValid(lastCacheTime)) {
         AppLogger.info('Using cached articles for keyword: $keyword');
         final cachedArticles = await localArticleDataSource
-            .getCachedArticlesByKeyword(keyword);
+            .getCachedArticlesByKeyword(keyword, languageCode);
 
         if (cachedArticles.isNotEmpty) {
           return cachedArticles;
@@ -95,6 +106,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
       AppLogger.info('Fetching fresh articles from API for keyword: $keyword');
       final articlesRaw = await remoteArticleDataSource.fetchArticlesByKeyword(
         keyword,
+        languageCode,
       );
 
       final articles = articlesRaw.map((raw) {
@@ -104,9 +116,10 @@ class ArticleRepositoryImpl implements ArticleRepository {
           'description': raw['description'],
           'category': raw['source']['name'],
           'content': raw['content'],
-          'urlImage': raw['urlToImage'],
+          'urlImage': raw['image'],
           'author': raw['author'] ?? '',
           'publishedAt': raw['publishedAt'] ?? DateTime.now().toIso8601String(),
+          'language': languageCode,
         };
         return Article.fromJson(json);
       }).toList();
@@ -119,7 +132,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
       // En cas d'erreur API, essayer de retourner le cache même expiré
       AppLogger.error('Error fetching articles by keyword', e);
       final cachedArticles = await localArticleDataSource
-          .getCachedArticlesByKeyword(keyword);
+          .getCachedArticlesByKeyword(keyword, languageCode);
 
       if (cachedArticles.isNotEmpty) {
         AppLogger.info('Returning expired cache due to API error');
