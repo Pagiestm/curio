@@ -37,11 +37,11 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
     String keyword,
     String languageCode,
   ) async {
-    print(languageCode);
     AppLogger.debug('Fetching articles for keyword: $keyword');
+    final encodedKeyword = Uri.encodeComponent(keyword);
     final response = await client.get(
       Uri.parse(
-        'https://gnews.io/api/v4/search?q=$keyword&lang=$languageCode&apikey=${dotenv.env['GNEWS_API_TOKEN']}',
+        'https://gnews.io/api/v4/search?q=$encodedKeyword&lang=$languageCode&apikey=${dotenv.env['GNEWS_API_TOKEN']}',
       ),
     );
     if (response.statusCode == 200) {
