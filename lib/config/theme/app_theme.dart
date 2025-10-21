@@ -54,8 +54,8 @@ class AppTheme {
       // Elevated Button
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFFBB86FC),
-          foregroundColor: const Color(0xFF000000),
+          backgroundColor: AppColors.primary,
+          foregroundColor: AppColors.textOnPrimary,
           elevation: 2,
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           shape: RoundedRectangleBorder(
@@ -72,7 +72,7 @@ class AppTheme {
       // Text Button
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: const Color(0xFFBB86FC),
+          foregroundColor: AppColors.primary,
           textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
       ),
@@ -446,7 +446,7 @@ class AppTheme {
       // Chip
       chipTheme: ChipThemeData(
         backgroundColor: Color(0xFF2A2A2A),
-        selectedColor: Color(0xFF3700B3),
+        selectedColor: AppColors.primaryLight,
         labelStyle: const TextStyle(
           color: AppColors.grey100,
           fontSize: 12,
