@@ -1,3 +1,4 @@
+import 'package:curio/data/datasources/article_local_datasource.dart';
 import 'package:curio/data/datasources/article_remote_datasource.dart';
 import 'package:curio/data/datasources/database_helper.dart';
 import 'package:curio/data/datasources/favorite_local_datasource.dart';
@@ -38,13 +39,20 @@ class MyApp extends StatelessWidget {
         Provider<ArticleRemoteDataSource>(
           create: (_) => ArticleRemoteDataSourceImpl(http.Client()),
         ),
+        ProxyProvider<DatabaseHelper, ArticleLocalDataSource>(
+          update: (_, dbHelper, __) => ArticleLocalDataSourceImpl(dbHelper),
+        ),
         ProxyProvider<DatabaseHelper, FavoriteLocalDataSource>(
           update: (_, dbHelper, __) => FavoriteLocalDataSourceImpl(dbHelper),
         ),
         // Repository
-        ProxyProvider<ArticleRemoteDataSource, ArticleRepository>(
-          update: (_, remoteDataSource, __) =>
-              ArticleRepositoryImpl(remoteDataSource),
+        ProxyProvider2<ArticleRemoteDataSource, ArticleLocalDataSource, ArticleRepository>(
+          update: (_, remoteDataSource, localDataSource, __) =>
+              ArticleRepositoryImpl(
+                remoteDataSource,
+                localDataSource,
+                cacheValidityDuration: 30, // 30 minutes de cache
+              ),
         ),
         ProxyProvider<FavoriteLocalDataSource, FavoriteRepository>(
           update: (_, localDataSource, __) =>
