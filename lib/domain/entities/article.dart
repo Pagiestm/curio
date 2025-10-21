@@ -7,6 +7,7 @@ class Article {
   final String urlImage;
   final String author;
   final DateTime publishedAt;
+  final String language;
 
   Article({
     required this.id,
@@ -17,6 +18,7 @@ class Article {
     required this.urlImage,
     required this.author,
     required this.publishedAt,
+    required this.language,
   });
 
   // Convert from JSON to Article
@@ -32,6 +34,7 @@ class Article {
       publishedAt: json['publishedAt'] != null
           ? DateTime.tryParse(json['publishedAt'].toString()) ?? DateTime.now()
           : DateTime.now(),
+      language: json['language']?.toString() ?? 'en',
     );
   }
 
@@ -46,6 +49,7 @@ class Article {
       'urlImage': urlImage,
       'author': author,
       'publishedAt': publishedAt.toIso8601String(),
+      'language': language,
     };
   }
 }

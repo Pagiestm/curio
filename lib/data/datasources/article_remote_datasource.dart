@@ -3,8 +3,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 abstract class ArticleRemoteDataSource {
-  Future<List<dynamic>> fetchArticles();
-  Future<List<dynamic>> fetchArticlesByKeyword(String keyword);
+  Future<List<dynamic>> fetchArticles(String languageCode);
+  Future<List<dynamic>> fetchArticlesByKeyword(
+    String keyword,
+    String languageCode,
+  );
 }
 
 class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
@@ -13,10 +16,10 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
   ArticleRemoteDataSourceImpl(this.client);
 
   @override
-  Future<List<dynamic>> fetchArticles() async {
+  Future<List<dynamic>> fetchArticles(String languageCode) async {
     final response = await client.get(
       Uri.parse(
-        'https://newsapi.org/v2/top-headlines?country=us&apiKey=${dotenv.env['NEWS_API_TOKEN']}',
+        'https://gnews.io/api/v4/top-headlines?&lang=$languageCode&apikey=${dotenv.env['GNEWS_API_TOKEN']}',
       ),
     );
 
@@ -29,11 +32,14 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
   }
 
   @override
-  Future<List<dynamic>> fetchArticlesByKeyword(String keyword) async {
-    print('Fetching articles for keyword: $keyword');
+  Future<List<dynamic>> fetchArticlesByKeyword(
+    String keyword,
+    String languageCode,
+  ) async {
+    print(languageCode);
     final response = await client.get(
       Uri.parse(
-        'https://newsapi.org/v2/top-headlines?country=us&q=$keyword&apiKey=${dotenv.env['NEWS_API_TOKEN']}',
+        'https://gnews.io/api/v4/search?q=$keyword&lang=$languageCode&apikey=${dotenv.env['GNEWS_API_TOKEN']}',
       ),
     );
     if (response.statusCode == 200) {

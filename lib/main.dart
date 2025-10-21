@@ -46,7 +46,11 @@ class MyApp extends StatelessWidget {
           update: (_, dbHelper, __) => FavoriteLocalDataSourceImpl(dbHelper),
         ),
         // Repository
-        ProxyProvider2<ArticleRemoteDataSource, ArticleLocalDataSource, ArticleRepository>(
+        ProxyProvider2<
+          ArticleRemoteDataSource,
+          ArticleLocalDataSource,
+          ArticleRepository
+        >(
           update: (_, remoteDataSource, localDataSource, __) =>
               ArticleRepositoryImpl(
                 remoteDataSource,
@@ -66,12 +70,24 @@ class MyApp extends StatelessWidget {
           update: (_, repository, __) => FavoriteService(repository),
         ),
         // ViewModels
-        ChangeNotifierProvider(
-          create: (c) => ArticleViewModel(c.read<ArticleService>()),
-        ),
         ChangeNotifierProvider(create: (_) => SettingsViewModel()),
-        ChangeNotifierProvider(
-          create: (c) => SearchViewmodel(c.read<ArticleService>()),
+        ChangeNotifierProxyProvider<ArticleService, ArticleViewModel>(
+          create: (c) => ArticleViewModel(
+            c.read<ArticleService>(),
+            c.read<SettingsViewModel>(),
+          ),
+          update: (c, articleService, previous) =>
+              previous ??
+              ArticleViewModel(articleService, c.read<SettingsViewModel>()),
+        ),
+        ChangeNotifierProxyProvider<ArticleService, SearchViewmodel>(
+          create: (c) => SearchViewmodel(
+            c.read<ArticleService>(),
+            c.read<SettingsViewModel>(),
+          ),
+          update: (c, articleService, previous) =>
+              previous ??
+              SearchViewmodel(articleService, c.read<SettingsViewModel>()),
         ),
         ChangeNotifierProvider(create: (_) => ArticleDetailsViewModel()),
         ChangeNotifierProvider(

@@ -3,12 +3,18 @@ import 'package:curio/domain/entities/article.dart';
 import 'package:sqflite/sqflite.dart';
 
 abstract class ArticleLocalDataSource {
-  Future<List<Article>> getCachedArticles();
-  Future<List<Article>> getCachedArticlesByKeyword(String keyword);
+  Future<List<Article>> getCachedArticles(String languageCode);
+  Future<List<Article>> getCachedArticlesByKeyword(
+    String keyword,
+    String languageCode,
+  );
   Future<void> cacheArticles(List<Article> articles);
   Future<void> cacheArticlesForKeyword(String keyword, List<Article> articles);
-  Future<DateTime?> getLastCacheTime();
-  Future<DateTime?> getLastCacheTimeForKeyword(String keyword);
+  Future<DateTime?> getLastCacheTime(String languageCode);
+  Future<DateTime?> getLastCacheTimeForKeyword(
+    String keyword,
+    String languageCode,
+  );
   Future<void> clearCache();
   Future<void> clearCacheForKeyword(String keyword);
 }
@@ -19,12 +25,12 @@ class ArticleLocalDataSourceImpl implements ArticleLocalDataSource {
   ArticleLocalDataSourceImpl(this.databaseHelper);
 
   @override
-  Future<List<Article>> getCachedArticles() async {
+  Future<List<Article>> getCachedArticles(String languageCode) async {
     final db = await databaseHelper.database;
     final List<Map<String, dynamic>> maps = await db.query(
       'cached_articles',
-      where: 'keyword IS NULL OR keyword = ?',
-      whereArgs: [''],
+      where: '(keyword IS NULL OR keyword = ?) AND language = ?',
+      whereArgs: ['', languageCode],
       orderBy: 'publishedAt DESC',
     );
 
@@ -32,12 +38,15 @@ class ArticleLocalDataSourceImpl implements ArticleLocalDataSource {
   }
 
   @override
-  Future<List<Article>> getCachedArticlesByKeyword(String keyword) async {
+  Future<List<Article>> getCachedArticlesByKeyword(
+    String keyword,
+    String languageCode,
+  ) async {
     final db = await databaseHelper.database;
     final List<Map<String, dynamic>> maps = await db.query(
       'cached_articles',
-      where: 'keyword = ?',
-      whereArgs: [keyword],
+      where: 'keyword = ? AND language = ?',
+      whereArgs: [keyword, languageCode],
       orderBy: 'publishedAt DESC',
     );
 
@@ -58,15 +67,11 @@ class ArticleLocalDataSourceImpl implements ArticleLocalDataSource {
 
     final now = DateTime.now().toIso8601String();
     for (var article in articles) {
-      batch.insert(
-        'cached_articles',
-        {
-          ...article.toJson(),
-          'keyword': '',
-          'cachedAt': now,
-        },
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      batch.insert('cached_articles', {
+        ...article.toJson(),
+        'keyword': '',
+        'cachedAt': now,
+      }, conflictAlgorithm: ConflictAlgorithm.replace);
     }
 
     await batch.commit(noResult: true);
@@ -80,36 +85,28 @@ class ArticleLocalDataSourceImpl implements ArticleLocalDataSource {
     final db = await databaseHelper.database;
     final batch = db.batch();
 
-    batch.delete(
-      'cached_articles',
-      where: 'keyword = ?',
-      whereArgs: [keyword],
-    );
+    batch.delete('cached_articles', where: 'keyword = ?', whereArgs: [keyword]);
 
     final now = DateTime.now().toIso8601String();
     for (var article in articles) {
-      batch.insert(
-        'cached_articles',
-        {
-          ...article.toJson(),
-          'keyword': keyword,
-          'cachedAt': now,
-        },
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      batch.insert('cached_articles', {
+        ...article.toJson(),
+        'keyword': keyword,
+        'cachedAt': now,
+      }, conflictAlgorithm: ConflictAlgorithm.replace);
     }
 
     await batch.commit(noResult: true);
   }
 
   @override
-  Future<DateTime?> getLastCacheTime() async {
+  Future<DateTime?> getLastCacheTime(String languageCode) async {
     final db = await databaseHelper.database;
     final List<Map<String, dynamic>> result = await db.query(
       'cached_articles',
       columns: ['cachedAt'],
-      where: 'keyword IS NULL OR keyword = ?',
-      whereArgs: [''],
+      where: '(keyword IS NULL OR keyword = ?) AND language = ?',
+      whereArgs: ['', languageCode],
       orderBy: 'cachedAt DESC',
       limit: 1,
     );
@@ -120,13 +117,16 @@ class ArticleLocalDataSourceImpl implements ArticleLocalDataSource {
   }
 
   @override
-  Future<DateTime?> getLastCacheTimeForKeyword(String keyword) async {
+  Future<DateTime?> getLastCacheTimeForKeyword(
+    String keyword,
+    String languageCode,
+  ) async {
     final db = await databaseHelper.database;
     final List<Map<String, dynamic>> result = await db.query(
       'cached_articles',
       columns: ['cachedAt'],
-      where: 'keyword = ?',
-      whereArgs: [keyword],
+      where: 'keyword = ? AND language = ?',
+      whereArgs: [keyword, languageCode],
       orderBy: 'cachedAt DESC',
       limit: 1,
     );
