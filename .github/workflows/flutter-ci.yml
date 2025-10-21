@@ -23,6 +23,9 @@ jobs:
     - name: Disable Flutter analytics
       run: flutter config --no-analytics
 
+    - name: Create .env file for CI
+      run: echo "NEWS_API_TOKEN=test_api_key_for_ci" > .env
+
     - name: Install dependencies
       run: flutter pub get
 
