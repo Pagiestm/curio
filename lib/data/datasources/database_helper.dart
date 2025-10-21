@@ -17,7 +17,7 @@ class DatabaseHelper {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, filePath);
 
-    return await openDatabase(path, version: 1, onCreate: _createDB);
+    return await openDatabase(path, version: 2, onCreate: _createDB, onUpgrade: _onUpgrade);
   }
 
   Future<void> _createDB(Database db, int version) async {
@@ -38,6 +38,40 @@ class DatabaseHelper {
         UNIQUE(articleId)
       )
     ''');
+
+    await db.execute('''
+      CREATE TABLE cached_articles (
+        id TEXT PRIMARY KEY,
+        title TEXT NOT NULL,
+        description TEXT NOT NULL,
+        category TEXT NOT NULL,
+        content TEXT NOT NULL,
+        urlImage TEXT NOT NULL,
+        author TEXT NOT NULL,
+        publishedAt TEXT NOT NULL,
+        keyword TEXT,
+        cachedAt TEXT NOT NULL
+      )
+    ''');
+  }
+
+  Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      await db.execute('''
+        CREATE TABLE IF NOT EXISTS cached_articles (
+          id TEXT PRIMARY KEY,
+          title TEXT NOT NULL,
+          description TEXT NOT NULL,
+          category TEXT NOT NULL,
+          content TEXT NOT NULL,
+          urlImage TEXT NOT NULL,
+          author TEXT NOT NULL,
+          publishedAt TEXT NOT NULL,
+          keyword TEXT,
+          cachedAt TEXT NOT NULL
+        )
+      ''');
+    }
   }
 
   Future<void> close() async {
